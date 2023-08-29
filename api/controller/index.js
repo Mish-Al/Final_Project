@@ -164,7 +164,7 @@ routes.post("/images", (req, res) => {
 
 
   module.exports = {
-    express,
-    routes,
-    verifyAToken
+   express,
+   routes,
+   verifyAToken
 }

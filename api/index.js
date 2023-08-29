@@ -1,11 +1,12 @@
 const { log } = require('console')
-const {express, routes} = require('./controller')
+const {express, routes} = require('./controller/index')
 const path = require('path')
 const app = express()
+const controller = require('./controller')
 const cors = require('cors')
 const cookieParser = require('cookie-parser')
 const errorHandling = require('./middleware/ErrorHandling')
-const port = +process.env.PORT || 3232
+const port = +process.env.PORT || 3030
 
 //static
 // Middleware - APplication level
@@ -29,7 +30,7 @@ app.use(
     )
 
 routes.get('^/$|/capstone_project', 
-(req, res)=>{
+(req, res) => {
     res.sendFile(path.resolve(__dirname,
         "../api/static/html/index.html"))
 })

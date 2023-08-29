@@ -1,4 +1,4 @@
-const db = require("../config");
+const db = require("../config/config");
 
 
 class Categories { 
@@ -6,7 +6,7 @@ class Categories {
 
   fetchCategories(req, res) {
     const query = `
-      SELECT category_name
+      SELECT *
       FROM Catergories;
     `;
 
@@ -21,7 +21,7 @@ class Categories {
 
   fetchCategory(req, res) {
     const query = `
-      SELECT category_name
+      SELECT *
       FROM Categories
       WHERE id = ?;
     `
