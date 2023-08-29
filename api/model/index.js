@@ -8,7 +8,7 @@ const Payment_Methods = require('./Payment_Methods')
 const Reviews = require('./Reviews')
 const Sizes = require('./Sizes')
 const Images = require('./Images')
-const Wishlist = require('./Wishlist')
+const Cart = require('./Cart')
 
 module.exports = {
     users: new Users(),
@@ -21,5 +21,5 @@ module.exports = {
     reviews: new Reviews(),
     sizes: new Sizes(),
     images: new Images(),
-    wishlist: new Wishlist()
+    cart: new Cart()
 }
