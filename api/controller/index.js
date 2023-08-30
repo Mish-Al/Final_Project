@@ -29,6 +29,9 @@ routes.get("/user/:id", (req, res) => {
 routes.put("/user/:id", bodyParser.json(), (req, res) => {
     users.updateUser(req, res)
   });
+routes.patch("/user/:id", bodyParser.json(), (req, res) => {
+    users.updateUser(req, res)
+  });
 routes.delete("/user/:id", (req, res) => {
     users.deleteUser(req, res)
   });
@@ -50,6 +53,9 @@ routes.post("/product", bodyParser.json(), (req, res) => {
 routes.put("/products/:id", bodyParser.json(), (req, res) => {
   products.updateProduct(req, res)
 });
+routes.patch("/products/:id", bodyParser.json(), (req, res) => {
+  products.updateProduct(req, res)
+});
 routes.delete("/products/:id", (req, res) => {
   products.deleteProduct(req, res)
 });
@@ -61,7 +67,7 @@ routes.get("/brands", (req, res) => {
 routes.get("/brands/:id", (req, res) => {
   brands.fetchBrand(req, res)
 })
-routes.get("/brands", (req, res) => {
+routes.post("/brands", (req, res) => {
   brands.addBrand(req, res)
 });
 
@@ -101,6 +107,9 @@ routes.post("/cart", bodyParser.json(), (req, res) => {
   cart.addCart(req, res)
 });
 routes.put("/cart/:id", bodyParser.json(), (req, res) => {
+  cart.updateCart(req, res)
+});
+routes.patch("/cart/:id", bodyParser.json(), (req, res) => {
   cart.updateCart(req, res)
 });
 routes.delete("/cart/:id", (req, res) => {
