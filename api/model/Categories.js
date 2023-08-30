@@ -34,6 +34,22 @@ class Categories {
       });
     });
   }
+
+  addCategory(req, res) {
+    const data = req.body;
+    const query = `
+      INSERT INTO Categories
+      SET ?;
+    `;
+
+    db.query(query, [data], (err) => {
+      if (err) throw err;
+      res.json({
+        status: res.statusCode,
+        msg: "Successfully Added",
+      });
+    });
+  }
 }
 
 module.exports = Categories
