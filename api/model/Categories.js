@@ -7,7 +7,7 @@ class Categories {
   fetchCategories(req, res) {
     const query = `
       SELECT *
-      FROM Catergories;
+      FROM Categories;
     `;
 
     db.query(query, (err, results) => {
