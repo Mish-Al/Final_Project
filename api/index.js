@@ -6,6 +6,7 @@ const cors = require('cors')
 const cookieParser = require('cookie-parser')
 const errorHandling = require('./middleware/ErrorHandling')
 const port = +process.env.PORT || 3030
+const bodyParser = require('body-parser')
 
 //static
 // Middleware - APplication level
@@ -24,6 +25,7 @@ app.use(
         extended: false
     }),
     cookieParser(),
+    bodyParser(),
     cors(),
     routes
     )
