@@ -51,6 +51,22 @@ class Images {
     });
   }
 
+  
+  deleteImage(req, res) {
+    const query = `
+    DELETE FROM Images
+    WHERE image_id = ?;
+    `
+    db.query(query, 
+        (err) => {
+            if(err) throw err
+            res.json({
+                status: res.statusCode,
+                msg: "Image Deleted"
+            })
+        })
+};
+
 }
 
 module.exports = Images

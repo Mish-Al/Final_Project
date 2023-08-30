@@ -52,7 +52,7 @@ class Cart {
   deleteCart(req, res) {
         const query = `
         DELETE FROM Cart 
-        WHERE cart_id = ?
+        WHERE ('cart_id' = '${req.params.id}')
         `;
         db.query(query,[req.params.id],
             (err, results) => {

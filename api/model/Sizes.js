@@ -51,6 +51,22 @@ class Sizes {
     });
   }
 
+  
+  deleteSize(req, res) {
+    const query = `
+    DELETE FROM Sizes
+    WHERE size_id = ${req.params.id};
+    `
+    db.query(query, 
+        (err) => {
+            if(err) throw err
+            res.json({
+                status: res.statusCode,
+                msg: "Size Deleted"
+            })
+        })
+};
+
 }
 
 module.exports = Sizes

@@ -50,6 +50,21 @@ class Categories {
       });
     });
   }
+
+  deleteCategory(req, res) {
+    const query = `
+    DELETE FROM Categories
+    WHERE ('category_id' = '${req.params.id}');
+    `
+    db.query(query, 
+        (err) => {
+            if(err) throw err
+            res.json({
+                status: res.statusCode,
+                msg: "Category Deleted"
+            })
+        })
+};
 }
 
 module.exports = Categories

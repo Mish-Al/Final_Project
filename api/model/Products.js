@@ -3,7 +3,7 @@ const db = require("../config/config");
 class Products { 
     fetchProducts(req, res) {
         const query = `
-        SELECT product_id, product_name, price, catergory_id, brand_id, size_id
+        SELECT *
         FROM Products;
         `
         db.query(query, 
@@ -18,7 +18,7 @@ class Products {
 
     fetchProduct(req, res) {
         const query = `
-        SELECT product_id, product_name, price, catergory_id, brand_id, size_id
+        SELECT *
         FROM Products
         WHERE product_id = ${req.params.id};
         `
@@ -33,7 +33,7 @@ class Products {
 
     addProduct(req, res) {
         const query = `
-            INSERT INTO Products 
+            INSERT INTO Products
             SET ?;
         `
         db.query(query, [req.body],
@@ -46,7 +46,7 @@ class Products {
         })
     };
 
-    updateProducts(req, res) {
+    updateProduct(req, res) {
         const query =`
         UPDATE Products 
         SET ?
@@ -65,9 +65,9 @@ class Products {
     deleteProducts(req, res) {
         const query = `
         DELETE FROM Products 
-        WHERE product_id = ?
+        WHERE product_id =  ${req.params.id}
         `;
-        db.query(query,[req.params.id],
+        db.query(query,
             (err, results) => {
             if(err) throw err
             res.json({

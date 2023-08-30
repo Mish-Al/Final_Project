@@ -1,12 +1,11 @@
 const db = require("../config/config")
 const {hash, compare, hashSync} = require('bcrypt');
-const createToken = require("../middleware/AuthenticateUser.js")
+const {createToken} = require("../middleware/AuthenticateUser.js")
 
 class Users {
     fetchUsers(req, res) {
         const query = `
-        SELECT user_id, first_name, last_name, email, phone, address, image_url
-        FROM Users;
+        SELECT * FROM Users;
         `
         db.query(query,
             (err, results) => {
@@ -54,17 +53,33 @@ updateUser(req, res) {
 deleteUser(req, res) {
     const query = `
     DELETE FROM Users
-    WHERE user_id = ${req.params.id};
+    WHERE ('user_id' = '${req.params.id}')
     `
     db.query(query, 
         (err) => {
             if(err) throw err
             res.json({
-                status: statusCode,
+                status: res.statusCode,
                 msg: "User Deleted"
             })
         })
 };
+
+addUser(req, res) {
+    const data = req.body;
+    const query = `
+      INSERT INTO Users
+      SET ?;
+    `;
+
+    db.query(query, [data], (err) => {
+      if (err) throw err;
+      res.json({
+        status: res.statusCode,
+        msg: "Successfully Added",
+      });
+    });
+  }
 
 login(req, res) {
     const {email, user_password} = req.body
@@ -127,6 +142,7 @@ async register(req, res) {
         let token = createToken(user)
         res.json({
             status: res.statusCode,
+            token,
             msg: "Registration Complete"
         })
     })

@@ -23,7 +23,10 @@ routes.get("/users", (req, res) => {
 routes.get("/user/:id", (req, res) => {
     users.fetchUser(req, res)
   });
- routes.post("/registerUser", bodyParser.json(), (req, res) => {
+  routes.post("/users", bodyParser.json(), (req, res) => {
+    users.addUser(req, res)
+  });
+ routes.post("/register", bodyParser.json(), (req, res) => {
     users.register(req, res)
   });
 routes.put("/user/:id", bodyParser.json(), (req, res) => {
@@ -35,10 +38,10 @@ routes.patch("/user/:id", bodyParser.json(), (req, res) => {
 routes.delete("/user/:id", (req, res) => {
     users.deleteUser(req, res)
   });
-routes.post('/login',
-  bodyParser.json(), (req, res)=>{
-      users.login(req, res)
-  });
+  routes.post('/login',
+    bodyParser.json(), (req, res)=>{
+        users.login(req, res)
+    });
 
   // <====== Product Routes =====>
 routes.get("/products", (req, res) => {
@@ -47,7 +50,7 @@ routes.get("/products", (req, res) => {
 routes.get("/product/:id", (req, res) => {
   products.fetchProduct(req, res)
 });
-routes.post("/product", bodyParser.json(), (req, res) => {
+routes.post("/products", bodyParser.json(), (req, res) => {
   products.addProduct(req, res)
 });
 routes.put("/products/:id", bodyParser.json(), (req, res) => {
@@ -57,7 +60,7 @@ routes.patch("/products/:id", bodyParser.json(), (req, res) => {
   products.updateProduct(req, res)
 });
 routes.delete("/products/:id", (req, res) => {
-  products.deleteProduct(req, res)
+  products.deleteProducts(req, res)
 });
 
   // <====== Brands Routes =====>
@@ -85,6 +88,9 @@ routes.get("/sizes/:id", (req, res) => {
 routes.post("/sizes", bodyParser.json(), (req, res) => {
   sizes.addSize(req, res)
 });
+routes.delete("/sizes/:id", (req, res) => {
+  sizes.deleteSize(req, res)
+});
 
 
 // <==== Category Routes ====>
@@ -96,6 +102,9 @@ routes.get('/categories/:id', (req, res) => {
 });
 routes.post("/categories", bodyParser.json(), (req, res) => {
   categories.addCategory(req, res)
+});
+routes.delete("/categories/:id", (req, res) => {
+  categories.deleteCategory(req, res)
 });
 
 
@@ -172,7 +181,10 @@ routes.get("/image/:id", (req, res) => {
 });
 routes.post("/images", bodyParser.json(), (req, res) => {
   images.addImage(req, res)
-})
+});
+routes.delete("/images/:id", (req, res) => {
+  images.deleteImage(req, res)
+});
 
 
   module.exports = {
