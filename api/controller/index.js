@@ -1,6 +1,7 @@
 const express = require("express");
 const { verifyAToken } = require('../middleware/AuthenticateUser');
 const routes = express.Router();
+const bodyParser = require("body-parser");
 const {
   users,
   products,
@@ -22,20 +23,20 @@ routes.get("/users", (req, res) => {
 routes.get("/user/:id", (req, res) => {
     users.fetchUser(req, res)
   });
- routes.post("/registerUser", (req, res) => {
+ routes.post("/registerUser", bodyParser.json(), (req, res) => {
     users.register(req, res)
   });
-routes.put("/user/:id", (req, res) => {
+routes.put("/user/:id", bodyParser.json(), (req, res) => {
     users.updateUser(req, res)
   });
-routes.patch("/user/:id", (req, res) => {
+routes.patch("/user/:id", bodyParser.json(), (req, res) => {
     users.updateUser(req, res)
   });
 routes.delete("/user/:id", (req, res) => {
     users.deleteUser(req, res)
   });
 routes.post('/login',
-   (req, res)=>{
+  bodyParser.json(), (req, res)=>{
       users.login(req, res)
   });
 
@@ -46,13 +47,13 @@ routes.get("/products", (req, res) => {
 routes.get("/product/:id", (req, res) => {
   products.fetchProduct(req, res)
 });
-routes.post("/product",  (req, res) => {
+routes.post("/product", bodyParser.json(), (req, res) => {
   products.addProduct(req, res)
 });
-routes.put("/products/:id",  (req, res) => {
+routes.put("/products/:id", bodyParser.json(), (req, res) => {
   products.updateProduct(req, res)
 });
-routes.patch("/products/:id", (req, res) => {
+routes.patch("/products/:id", bodyParser.json(), (req, res) => {
   products.updateProduct(req, res)
 });
 routes.delete("/products/:id", (req, res) => {
@@ -66,10 +67,10 @@ routes.get("/brands", (req, res) => {
 routes.get("/brands/:id", (req, res) => {
   brands.fetchBrand(req, res)
 })
-routes.post("/brands", (req, res) => {
+routes.post("/brands", bodyParser.json(), (req, res) => {
   brands.addBrand(req, res)
 });
-routes.patch("/brands/:id", (req, res) => {
+routes.patch("/brands/:id", bodyParser.json(), (req, res) => {
   brands.update(req, res)
 });
 
@@ -81,7 +82,7 @@ routes.get("/sizes", (req, res) => {
 routes.get("/sizes/:id", (req, res) => {
   sizes.fetchSize(req, res)
 });
-routes.post("/sizes", (req, res) => {
+routes.post("/sizes", bodyParser.json(), (req, res) => {
   sizes.addSize(req, res)
 });
 
@@ -93,7 +94,7 @@ routes.get('/categories', (req, res) => {
 routes.get('/categories/:id', (req, res) => {
   categories.fetchCategory(req, res)
 });
-routes.post("/categories", (req, res) => {
+routes.post("/categories", bodyParser.json(), (req, res) => {
   categories.addCategory(req, res)
 });
 
@@ -105,13 +106,13 @@ routes.get("/cart", (req, res) => {
 routes.get("/cart/:id", (req, res) => {
   cart.fetchCart(req, res)
 });
-routes.post("/cart", (req, res) => {
+routes.post("/cart", bodyParser.json(), (req, res) => {
   cart.addCart(req, res)
 });
-routes.put("/cart/:id", (req, res) => {
+routes.put("/cart/:id", bodyParser.json(), (req, res) => {
   cart.updateCart(req, res)
 });
-routes.patch("/cart/:id", (req, res) => {
+routes.patch("/cart/:id", bodyParser.json(), (req, res) => {
   cart.updateCart(req, res)
 });
 routes.delete("/cart/:id", (req, res) => {
@@ -125,7 +126,7 @@ routes.get("/orders", (req, res) => {
 routes.get("/orders/:id", (req, res) => {
   orders.fetchOrder(req, res)
 });
-routes.post("/orders", (req, res) => {
+routes.post("/orders", bodyParser.json(), (req, res) => {
   orders.addOrder(req, res)
 });
 
@@ -136,7 +137,7 @@ routes.get("/order_items", (req, res) => {
 routes.get("/order_item/:id", (req, res) => {
   order_items.fetchOrder(req, res)
 });
-routes.post("/order_item", (req, res) => {
+routes.post("/order_item", bodyParser.json(), (req, res) => {
   order_items.addOrder(req, res)
 });
 
@@ -147,7 +148,7 @@ routes.get("/payment_methods", (req, res) => {
 routes.get("/payment_methods/:id", (req, res) => {
   payment_methods.fetchPayment(req, res)
 });
-routes.post("/payment_methods", (req, res) => {
+routes.post("/payment_methods", bodyParser.json(), (req, res) => {
   payment_methods.addPayment(req, res)
 });
 
@@ -158,7 +159,7 @@ routes.get("/reviews", (req, res) => {
 routes.get("/review/:id", (req, res) => {
   reviews.fetchReview(req, res)
 });
-routes.post("/reviews", (req, res) => {
+routes.post("/reviews", bodyParser.json(), (req, res) => {
   reviews.addReview(req, res)
 });
 
@@ -169,7 +170,7 @@ routes.get("/images", (req, res) => {
 routes.get("/image/:id", (req, res) => {
   images.fetchImage(req, res)
 });
-routes.post("/images", (req, res) => {
+routes.post("/images", bodyParser.json(), (req, res) => {
   images.addImage(req, res)
 })
 

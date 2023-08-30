@@ -23,7 +23,7 @@ class Categories {
     const query = `
       SELECT *
       FROM Categories
-      WHERE id = ?;
+      WHERE category_id = ?;
     `
 
     db.query(query, [req.params.id], (err, result) => {

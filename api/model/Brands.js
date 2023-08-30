@@ -23,7 +23,7 @@ class Brands {
     const query = `
       SELECT *
       FROM Brands
-      WHERE id = ?;
+      WHERE brand_id = ?;
     `;
 
     db.query(query, [req.params.id], (err, result) => {
@@ -55,7 +55,7 @@ class Brands {
     const query = `
       UPDATE Brands
       SET ?
-      WHERE id = ?;
+      WHERE brand_id = ?;
     `;
 
     db.query(query, [req.body, req.params.id], (err) => {

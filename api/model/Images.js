@@ -23,7 +23,7 @@ class Images {
     const query = `
       SELECT *
       FROM Images
-      WHERE id = ?;
+      WHERE image_id = ?;
     `
 
     db.query(query, [req.params.id], (err, result) => {

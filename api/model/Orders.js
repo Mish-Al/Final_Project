@@ -22,7 +22,7 @@ class Orders {
     const query = `
       SELECT *
       FROM Orders
-      WHERE id = ?;
+      WHERE order_id = ?;
     `
 
     db.query(query, [req.params.id], (err, result) => {
