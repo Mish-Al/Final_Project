@@ -53,7 +53,7 @@ updateUser(req, res) {
 deleteUser(req, res) {
     const query = `
     DELETE FROM Users
-    WHERE ('user_id' = '${req.params.id}')
+    WHERE user_id = ${req.params.id}
     `
     db.query(query, 
         (err) => {

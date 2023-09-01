@@ -66,6 +66,21 @@ class Images {
             })
         })
 };
+updateImage(req, res) {
+  const query =`
+  UPDATE Images 
+  SET ?
+  WHERE image_id = ${req.params.id};
+  `
+  db.query(query, [req.body],
+      (err) => {
+      if(err) throw err
+      res.json({
+          status: res.statusCode,
+          msg: "Update Successful"
+      })
+  })
+};
 
 }
 

@@ -176,7 +176,7 @@ routes.post("/reviews", bodyParser.json(), (req, res) => {
 routes.get("/images", (req, res) => {
   images.fetchImages(req, res)
 });
-routes.get("/image/:id", (req, res) => {
+routes.get("/images/:id", (req, res) => {
   images.fetchImage(req, res)
 });
 routes.post("/images", bodyParser.json(), (req, res) => {
@@ -184,6 +184,12 @@ routes.post("/images", bodyParser.json(), (req, res) => {
 });
 routes.delete("/images/:id", (req, res) => {
   images.deleteImage(req, res)
+});
+routes.put("/images/:id", bodyParser.json(), (req, res) => {
+  images.updateImage(req, res)
+});
+routes.patch("/images/:id", bodyParser.json(), (req, res) => {
+  images.updateImage(req, res)
 });
 
 

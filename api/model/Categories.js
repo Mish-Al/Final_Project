@@ -54,7 +54,7 @@ class Categories {
   deleteCategory(req, res) {
     const query = `
     DELETE FROM Categories
-    WHERE ('category_id' = '${req.params.id}');
+    WHERE category_id = ${req.params.id};
     `
     db.query(query, 
         (err) => {
