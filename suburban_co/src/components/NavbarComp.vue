@@ -2,9 +2,10 @@
   <div>
     <nav class="navbar">
         <div class="container-fluid">
-          <a class="navbar-brand" href="#">
+          <a class="navbar-brand" href="/">
             <img
-              src="../assets/Screenshot_2023-09-04_120606-removebg-preview.png"
+              src="https://i.postimg.cc/6qWdhgFG/Screenshot-2023-09-04-120606-clipdrop-background-removal.png"
+              style="height: 7rem;"
               id="logo"
           /></a>
           <button
@@ -26,7 +27,7 @@
             <div class="offcanvas-header">
               <a class="offcanvas-title" id="offcanvasNavbarLabel"
                 ><img
-                  src="../assets/Screenshot_2023-09-04_120606-removebg-preview.png"
+                  src="https://i.postimg.cc/6qWdhgFG/Screenshot-2023-09-04-120606-clipdrop-background-removal.png"
                   href="../views/HomeView.vue"
                   alt="logo"
               /></a>
