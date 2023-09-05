@@ -47,7 +47,7 @@
                   <router-link class="nav-link" to="/about">About</router-link>
                 </li>
                
-                <li class="nav-item" data-bs-dismiss="offcanvas">
+                <li class="nav-item" data-bs-dismiss="offcanvas" v-show="isAdmin">
                   <router-link class="nav-link" to="/admin"
                     >Admin</router-link
                   >

@@ -8,7 +8,7 @@
  alt="">
  <div class="card-img-overlay">
   <h3>Welcome To Suburban Co.</h3>
-     <a href="./ProductsView.vue" class="btn upper">About Suburban Co.</a>
+     <a href="./AboutView.vue" class="btn upper">About Suburban Co.</a>
   </div>
 </div>
 </div>
