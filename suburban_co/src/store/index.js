@@ -6,7 +6,10 @@ const suburbanUrl = "https://suburban-co.onrender.com"
 export default createStore({
   state: {
     users: null,
+    user: null,
     products: null,
+    product: null,
+    
   },
   getters: {
   },
