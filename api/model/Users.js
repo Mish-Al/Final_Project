@@ -19,7 +19,7 @@ class Users {
 
 fetchUser(req, res) {
     const query = `
-        SELECT user_id, first_name, last_name, email, phone, address, user_password, image_url
+        SELECT user_id, first_name, last_name, email, phone, user_password, image_url
         FROM Users
         WHERE user_id = ${req.params.id};
         `

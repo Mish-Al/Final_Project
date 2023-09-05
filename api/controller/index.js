@@ -35,7 +35,7 @@ routes.put("/user/:id", bodyParser.json(), (req, res) => {
 routes.patch("/user/:id", bodyParser.json(), (req, res) => {
     users.updateUser(req, res)
   });
-routes.delete("/user/:id", (req, res) => {
+routes.delete("/user/:id",  bodyParser.json(),(req, res) => {
     users.deleteUser(req, res)
   });
   routes.post('/login',
