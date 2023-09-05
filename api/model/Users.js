@@ -90,13 +90,13 @@ login(req, res) {
     `
     db.query(query, async (err, result) => {
         if(err) throw err
-        if(!result.length) {
+        if(!result?.length) {
             res.json({
                 status: res.statusCode,
-                msg: "Login Error"
+                msg: "Invalid Email"
             })
     } else {
-        compare(user_password,
+       await compare(user_password,
             result[0].user_password,
             (cErr, cResult) => {
                 if(cErr) throw cErr
