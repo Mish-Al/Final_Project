@@ -78,9 +78,7 @@ export default createStore({
       }
     },
 
-    fetchCategories({ commit }) {
-
-    }
+  
     // async addProduct(context, )
     // // async login(context, payload)
   },
