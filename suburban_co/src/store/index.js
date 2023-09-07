@@ -1,12 +1,12 @@
-import { createStore } from 'vuex'
-import axios from 'axios'
-import sweet from 'sweetalert'
-import router from '@/router'
-import { useCookies } from 'vue3-cookies'
-import authUser from '@/services/AuthenticateUser'
-const suburbanUrl = "https://suburban-co.onrender.com"
+import { createStore } from "vuex";
+import axios from "axios";
+import sweet from "sweetalert";
+import router from "@/router";
+import { useCookies } from "vue3-cookies";
+import authUser from "@/services/AuthenticateUser";
+const suburbanUrl = "https://suburban-co.onrender.com";
+const { cookies } = useCookies();
 
-const { cookies } = useCookies()
 export default createStore({
   state: {
     users: null,
@@ -19,7 +19,10 @@ export default createStore({
     sizes: null,
     size: null,
     payment_method: null,
-    reviews: null
+    reviews: null,
+    spinner: null,
+    token: null,
+    msg: null,
   },
   getters: {
     // getCategoryById: (state) => (category_id) => {
@@ -28,55 +31,54 @@ export default createStore({
   },
   mutations: {
     setUsers(state, users) {
-      state.users = users
+      state.users = users;
     },
     setUser(state, user) {
-      state.user = user
+      state.user = user;
     },
 
     setProducts(state, products) {
-      state.products = products
+      state.products = products;
     },
     setProduct(state, product) {
-      state.product = product
+      state.product = product;
     },
 
     setCategories(state, categories) {
-      state.categories = categories
+      state.categories = categories;
     },
     setImages(state, images) {
-      state.images = images
+      state.images = images;
     },
     setBrands(state, brands) {
-      state.brands = brands
+      state.brands = brands;
     },
     setSizes(state, sizes) {
-      state.sizes = sizes
+      state.sizes = sizes;
     },
     setSize(state, size) {
-      state.size = size
+      state.size = size;
     },
     setPayment(state, payment_method) {
-      state.payment_method = payment_method
-    }
-
-  
+      state.payment_method = payment_method;
+    },
+    setSpinner(state, value) {
+      state.spinner = value;
+    },
   },
   actions: {
-
     // <==== User Actions ====>
     async fetchUsers(context) {
-      try{
-        const { results } = (await axios.get
-          (`${suburbanUrl}/users`)).data
-          context.commit("setUsers", results)
-      }catch(e) {
+      try {
+        const { results } = (await axios.get(`${suburbanUrl}/users`)).data;
+        context.commit("setUsers", results);
+      } catch (e) {
         sweet({
           title: "Error",
           text: "Oops, an error occured",
           icon: "error",
-          timer: 3000
-        })
+          timer: 3000,
+        });
       }
     },
     // async addUser(context, payload) {
@@ -89,7 +91,6 @@ export default createStore({
     //         icon: "success",
     //         timer: 3000
     //       })
-
 
     //       //explain line 95
     //       context.dispatch('fetchUsers')
@@ -122,7 +123,6 @@ export default createStore({
     //   }
     // },
 
-
     // <==== Product Actions ====>
     async fetchProducts(context) {
       try {
@@ -140,37 +140,38 @@ export default createStore({
       }
     },
 
-    // async login(context, payload) {
-    //   try{
-    //     const {msg, token, result} = (await axios.post
-    //       (`${suburbanUrl}/user/login`, payload)).data
-    //       if(result) {
-    //         context.commit('setUser', {result, msg})
-    //         cookies.set('GrantedUserAccess', {token, msg, result})
-    //         authUser.applyToken(token)
-    //         sweet({
-    //           title: msg,
-    //           text: `Welcome Back, ${result?.first_name}
-    //           ${result?.last_name}`,
-    //           icon: "success",
-    //           timer: 3000
-    //         })
-    //         router.push({name: 'home'})
-    //       }else {
-    //         sweet({
-    //           title: "Error",
-    //            text: "Oops, an error occured",
-    //           icon: "error",
-    //           timer: 3000
-    //         })
-    //       }
-    //   }
-    // }
+    async login(context, payload) {
+      try {
+        const { msg, token, result } = (
+          await axios.post(`${suburbanUrl}/login`, payload)
+        ).data;
+        if (result) {
+          context.commit("setUser", { result, msg });
+          cookies.set("GrantedUserAccess", { token, msg, result });
+          authUser.applyToken(token);
+          sweet({
+            title: msg,
+            text: `Welcome Back, ${result?.first_name}
+              ${result?.last_name}`,
+            icon: "success",
+            timer: 3000,
+          });
+          router.push({ name: "home" });
+        } else {
+          sweet({
+            title: "Error",
+            text: "Oops, an error occured",
+            icon: "error",
+            timer: 3000,
+          });
+        }
+      } catch (e) {
+        context.commit(console.log(e));
+      }
+    },
 
-  
     // async addProduct(context, )
     // // async login(context, payload)
   },
-  modules: {
-  }
-})
+  modules: {},
+});

@@ -62,6 +62,16 @@
                     >Contact</router-link
                   >
                 </li>
+                <li class="nav-item" data-bs-dismiss="offcanvas">
+                  <router-link class="nav-link" to="/login"
+                    >Log In</router-link
+                  >
+                </li>
+                <li class="nav-item" data-bs-dismiss="offcanvas">
+                  <router-link class="nav-link" to="/register"
+                    >Register</router-link
+                  >
+                </li>
               </ul>
             </div>
           </div>
