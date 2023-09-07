@@ -94,6 +94,9 @@ export default {
     login() {
       this.$store.dispatch("login", this.payload);
     },
+    logout() {
+      this.$store.dispatch("logout", this.payload)
+    },
   },
   beforeCreate() {
     this.$store.dispatch('fetchUsers')

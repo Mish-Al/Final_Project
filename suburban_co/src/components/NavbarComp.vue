@@ -57,6 +57,11 @@
                     >Products</router-link
                   >
                 </li>
+                <li class="nav-item" v-show="isAdmin" data-bs-dismiss="offcanvas">
+                  <router-link class="nav-link" to="/profile"
+                    >Profile</router-link
+                  >
+                </li>
                 <li class="nav-item" data-bs-dismiss="offcanvas">
                   <router-link class="nav-link" to="/contact"
                     >Contact</router-link

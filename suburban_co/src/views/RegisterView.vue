@@ -117,9 +117,9 @@ export default {
       this.$store.dispatch("register", this.payload);
     },
   },
-  beforeCreate() {
-    this.$store.dispatch('fetchUsers')
-  },
+  // beforeCreate() {
+  //   this.$store.dispatch('fetchUsers')
+  // },
     mounted() {
     console.log(cookies.get("GrantedUserAccess"));
   }

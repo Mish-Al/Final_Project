@@ -84,7 +84,8 @@ export default createStore({
 
     async fetchUser(context, user_id) {
       try {
-        const { results } = (await axios.get(`${suburbanUrl}/user/${user_id}`)).data;
+        const { results } = (await axios.get(`${suburbanUrl}/user/${user_id}`))
+          .data;
         context.commit("setUser", results);
       } catch (e) {
         sweet({
@@ -97,28 +98,29 @@ export default createStore({
     },
 
     async register(context, payload) {
-      try{
-        const { msg } = (await axios.post(`${suburbanUrl}/register`, payload)).data
-        if(msg) {
+      try {
+        const { msg } = (await axios.post(`${suburbanUrl}/register`, payload))
+          .data;
+        if (msg) {
           sweet({
             title: "Registration",
             text: msg,
             icon: "success",
-            timer: 3000
-          })
+            timer: 3000,
+          });
 
           //explain line  below
-          context.dispatch('fetchUsers')
-          router.push({name: 'home'})
-        }else {
+          context.dispatch("fetchUsers");
+          router.push({ name: "home" });
+        } else {
           sweet({
             title: "Error",
             text: "Oops, an error occured",
             icon: "error",
-            timer: 3000
-          })
+            timer: 3000,
+          });
         }
-      }catch (e) {
+      } catch (e) {
         context.commit(console.log(e));
       }
     },
@@ -139,7 +141,7 @@ export default createStore({
             icon: "success",
             timer: 3000,
           });
-          router.push({ name: 'home' });
+          router.push({ name: "home" });
         } else {
           sweet({
             title: "Error",
@@ -152,7 +154,40 @@ export default createStore({
         context.commit(console.log(e));
       }
     },
-   
+    async logout(context) {
+      try {
+        // Make a request to your server's logout endpoint
+        await axios.get(`${suburbanUrl}/logout`);
+        
+        // Clear the local user data and token
+        context.commit("setUser", null); // Clear user data from Vuex store
+        cookies.remove("GrantedUserAccess"); // Clear the cookie
+        
+        // Notify the user and redirect to the login page
+        sweet({
+          title: "Logged Out",
+          text: "You have been successfully logged out.",
+          icon: "success",
+          timer: 3000,
+        });
+    
+        // Redirect the user to the login page
+        router.push({ name: "login" });
+      } catch (e) {
+        // Handle any errors that occur during the logout process
+        console.error("Logout error:", e);
+        sweet({
+          title: "Error",
+          text: "An error occurred during logout.",
+          icon: "error",
+          timer: 3000,
+        });
+      }
+    },
+    
+    deleteUser(context, payload) {
+
+    },
 
     // <==== Product Actions ====>
     async fetchProducts(context) {

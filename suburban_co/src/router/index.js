@@ -26,21 +26,58 @@ const routes = [
     path: "/products",
     name: "products",
     component: () => import("../views/ProductsView.vue"),
+    beforeEnter() {
+      if(!cookies.get('GrantedUserAccess')) {
+      router.push({name: "login"})
+      }
+    }
   },
   {
     path: "/admin",
     name: "admin",
     component: () => import("../views/AdminView.vue"),
+    beforeEnter() {
+      if(!cookies.get('GrantedUserAccess')) {
+      router.push({name: "login"})
+      }
+    }
+  },
+  {
+    path: "/profile",
+    name: "profile",
+    component: () => import("../views/ProfileView.vue"),
+    beforeEnter() {
+      if(!cookies.get('GrantedUserAccess')) {
+      router.push({name: "login"})
+      }
+    }
   },
   {
     path: "/register",
     name: "register",
     component: () => import("../views/RegisterView.vue"),
+    beforeEnter() {
+    }
   },
   {
     path: "/login",
     name: "login",
     component: () => import("../views/LoginView.vue"),
+    afterEnter() {
+      if(!cookies.delete('GrantedUserAccess')) {
+      router.push({name: "login"})
+      }
+    }
+  },
+  {
+    path: "/logout",
+    name: "logout",
+    component: () => import("../views/LoginView.vue"),
+  },
+  {
+    path: "/contact",
+    name: "contact",
+    component: () => import("../views/ContactView.vue"),
   }
 ]
 
