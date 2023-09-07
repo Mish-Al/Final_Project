@@ -81,62 +81,45 @@ export default createStore({
         });
       }
     },
-    // async addUser(context, payload) {
-    //   try{
-    //     const { msg } = (await axios.post(`${suburbanUrl}/user/register`, payload)).data
-    //     if(msg) {
-    //       sweet({
-    //         title: "Registration",
-    //         text: msg,
-    //         icon: "success",
-    //         timer: 3000
-    //       })
 
-    //       //explain line 95
-    //       context.dispatch('fetchUsers')
-    //       router.push({name: 'login'})
-    //     }else {
-    //       sweet({
-    //         title: "Error",
-    //         text: "Oops, an error occured",
-    //         icon: "error",
-    //         timer: 3000
-    //       })
-    //     }
-    //   }
-    // }
-    // async fetchUsers(context) {
-    //   try{
-    //     const {results, msg} = (await axios.get(`${suburbanUrl}users`)).data
-    //     // if(results) {
-    //     context.commit("setUsers", data.results)
-    //   // }else {
-    //   //   sweet({
-    //   //       title: 'Error',
-    //   //       text: msg,
-    //   //       icon: "error",
-    //   //       timer: 3000
-    //   //   })
-    //   // }
-    //   } catch (e) {
-    //     context.commit("setMsg", "There was an error");
-    //   }
-    // },
-
-    // <==== Product Actions ====>
-    async fetchProducts(context) {
+    async fetchUser(context, user_id) {
       try {
-        const data = await axios.get(`${suburbanUrl}products`);
+        const { results } = (await axios.get(`${suburbanUrl}/user/${user_id}`)).data;
+        context.commit("setUser", results);
       } catch (e) {
-        alert(e.message);
+        sweet({
+          title: "Error",
+          text: "Oops, an error occured",
+          icon: "error",
+          timer: 3000,
+        });
       }
     },
 
-    async fetchProduct(context, product_id) {
-      try {
-        const data = await axios.get(`${suburbanUrl}products/${product_id}`);
-      } catch (e) {
-        alert(e.message);
+    async register(context, payload) {
+      try{
+        const { msg } = (await axios.post(`${suburbanUrl}/register`, payload)).data
+        if(msg) {
+          sweet({
+            title: "Registration",
+            text: msg,
+            icon: "success",
+            timer: 3000
+          })
+
+          //explain line  below
+          context.dispatch('fetchUsers')
+          router.push({name: 'home'})
+        }else {
+          sweet({
+            title: "Error",
+            text: "Oops, an error occured",
+            icon: "error",
+            timer: 3000
+          })
+        }
+      }catch (e) {
+        context.commit(console.log(e));
       }
     },
 
@@ -156,7 +139,7 @@ export default createStore({
             icon: "success",
             timer: 3000,
           });
-          router.push({ name: "home" });
+          router.push({ name: 'home' });
         } else {
           sweet({
             title: "Error",
@@ -169,9 +152,24 @@ export default createStore({
         context.commit(console.log(e));
       }
     },
+   
 
-    // async addProduct(context, )
-    // // async login(context, payload)
+    // <==== Product Actions ====>
+    async fetchProducts(context) {
+      try {
+        const data = await axios.get(`${suburbanUrl}products`);
+      } catch (e) {
+        context.commit(console.log(e));
+      }
+    },
+
+    async fetchProduct(context, product_id) {
+      try {
+        const data = await axios.get(`${suburbanUrl}products/${product_id}`);
+      } catch (e) {
+        context.commit(console.log(e));
+      }
+    },
   },
   modules: {},
 });

@@ -47,12 +47,12 @@
                   <router-link class="nav-link" to="/about">About</router-link>
                 </li>
                
-                <li class="nav-item" data-bs-dismiss="offcanvas" v-show="isAdmin">
+                <li class="nav-item" v-show="isAdmin" data-bs-dismiss="offcanvas">
                   <router-link class="nav-link" to="/admin"
                     >Admin</router-link
                   >
                 </li>
-                <li class="nav-item" data-bs-dismiss="offcanvas">
+                <li class="nav-item"  data-bs-dismiss="offcanvas">
                   <router-link class="nav-link" to="/products"
                     >Products</router-link
                   >
@@ -81,9 +81,29 @@
 </template>
 
 <script>
-  export default {
-    
-  }
+// import { useStore } from 'vuex'
+import { useCookies } from 'vue3-cookies'
+const { cookies } = useCookies()
+    export default {
+        computed: {
+          user() {
+            return this.$store.state.user ||
+            cookies.get('GrantedUserAccess')
+          },
+          result() {
+          return this.user?.result;
+        },
+        isAdmin() {
+          return this.result?.user_role?.toLowerCase() === "admin"
+        },
+        isUser() {
+          return this.result?.user_role?.toLowerCase() === "user"
+        },
+        isAdminUser() {
+          return this.result?.user_role?.toLowerCase() === "admin" || this.result?.userRole?.toLowerCase() === "user"
+        }
+        },
+      }
 </script>
 
 <style scoped>

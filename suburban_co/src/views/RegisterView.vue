@@ -1,27 +1,130 @@
 <template>
-    <div>
-
+  <div>
+    <div class="container">
+      <div class="row">
+        <form class="form" @submit.prevent="register">
+          <div class="form-control-wrapper">
+            <span class="inline">
+              <input
+                type="name"
+                class="form-control"
+                placeholder="First Name"
+                v-model="payload.first_name"
+                required
+              />
+            </span>
+          </div>
+          <div class="form-control-wrapper">
+            <span class="inline">
+              <input
+                type="surname"
+                class="form-control"
+                placeholder="Last Name"
+                v-model="payload.last_name"
+                required
+              />
+            </span>
+          </div>
+          <div class="form-control-wrapper">
+            <span class="inline">
+              <input
+                type="email"
+                class="form-control"
+                placeholder="email"
+                v-model="payload.email"
+                required
+              />
+            </span>
+          </div>
+          <div class="form-control-wrapper">
+            <span class="inline">
+              <input
+                type="number"
+                class="form-control"
+                placeholder="Cell No. (optional)"
+                v-model="payload.phone"
+              />
+            </span>
+          </div>
+          <div class="form-control-wrapper">
+            <span class="inline">
+              <input
+                type="password"
+                class="form-control"
+                placeholder="password"
+                minlength="4"
+                maxlength="12"
+                v-model="payload.user_password"
+              />
+            </span>
+          </div>
+          <div class="form-control-wrapper">
+            <span class="inline">
+              <input
+                type="text"
+                class="form-control"
+                v-model="payload.image_url"
+              />
+            </span>
+          </div>
+          <div class="form-control-wrapper">
+            <div class="col">
+              <button type="submit" class="btn btn-success">
+                Submit
+                <span
+                  v-show="spinner"
+                  class="spinner-border spinner-border-sm"
+                  role="status"
+                  aria-hidden="true"
+                ></span>
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
     </div>
+  </div>
 </template>
 
 <script>
-    export default {
-        data() {
-            return {
-             payload: { 
-                first_name: "",
-		        last_name: "",
-		        email: "",
-		        phone: "",
-		        user_password: "",
-		        user_role: "",
-		        image_url: "https://i.postimg.cc/3rZ0H0D8/profile-Image.png"
-            }
-        }
-    }
-    }
+import { useCookies } from "vue3-cookies";
+const { cookies } = useCookies();
+export default {
+  data() {
+    return {
+      payload: {
+        first_name: "",
+        last_name: "",
+        email: "",
+        phone: "",
+        user_password: "",
+        user_role: "",
+        image_url: "https://i.postimg.cc/3rZ0H0D8/profile-Image.png",
+      },
+    };
+  },
+  computed: {
+    user() {
+      return this.$store.state.user;
+      //  || JSON.parse( cookies.get('GrantedUserAccess'))
+    },
+    spinner() {
+      return this.$store.state.spinner;
+    },
+  },
+  methods: {
+    register() {
+      this.$store.dispatch("register", this.payload);
+    },
+  },
+  beforeCreate() {
+    this.$store.dispatch('fetchUsers')
+  },
+    mounted() {
+    console.log(cookies.get("GrantedUserAccess"));
+  }
+};
 </script>
 
 <style scoped>
-
 </style>

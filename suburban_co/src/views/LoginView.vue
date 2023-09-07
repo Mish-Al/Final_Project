@@ -98,17 +98,8 @@ export default {
   beforeCreate() {
     this.$store.dispatch('fetchUsers')
   },
-  created() {
-
-  },
-  beforeMount() {
-
-  },
     mounted() {
     console.log(cookies.get("GrantedUserAccess"));
-  },
-  beforeUnmount() {
-    
   }
 };
 </script>
