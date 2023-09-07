@@ -126,7 +126,7 @@ login(req, res) {
 async register(req, res) {
     const data = req.body
     //encryption
-    data.user_password = await hash(data.user_password, 15)
+    data.user_password = await hash(data.user_password, 10)
     //payload
     const user = {
         email: data.email,
