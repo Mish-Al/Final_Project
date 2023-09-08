@@ -47,6 +47,27 @@ routes.delete("/user/:id",  bodyParser.json(),(req, res) => {
 routes.get("/products", (req, res) => {
   products.fetchProducts(req, res)
 });
+routes.get("/upper", (req, res) => {
+  products.fetchUpper(req, res)
+});
+routes.get("/lower", (req, res) => {
+  products.fetchLower(req, res)
+});
+routes.get("/shoes", (req, res) => {
+  products.fetchShoes(req, res)
+});
+routes.get("/nike", (req, res) => {
+  products.fetchNike(req, res)
+});
+routes.get("/balance", (req, res) => {
+  products.fetchBalance(req, res)
+});
+routes.get("/levi", (req, res) => {
+  products.fetchLevi(req, res)
+});
+routes.get("/vans", (req, res) => {
+  products.fetchVans(req, res)
+});
 routes.get("/product/:id", (req, res) => {
   products.fetchProduct(req, res)
 });

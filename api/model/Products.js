@@ -1,81 +1,168 @@
 const db = require("../config/config");
 
-class Products { 
-    fetchProducts(req, res) {
-        const query = `
+class Products {
+  fetchProducts(req, res) {
+    const query = `
         SELECT *
         FROM Products;
-        `
-        db.query(query, 
-            (err, results) => {
-                if(err) throw err
-                res.json({
-                    status: res.statusCode,
-                    results
-                })
-            })
-    };
+        `;
+    db.query(query, (err, results) => {
+      if (err) throw err;
+      res.json({
+        status: res.statusCode,
+        results,
+      });
+    });
+  }
 
-    fetchProduct(req, res) {
-        const query = `
+  fetchProduct(req, res) {
+    const query = `
         SELECT *
         FROM Products
         WHERE product_id = ${req.params.id};
-        `
-        db.query(query, 
-            (err, result) => {
-                res.json({
-                    status: res.statusCode,
-                    result
-                })
-            })
-    };
+        `;
+    db.query(query, (err, result) => {
+      res.json({
+        status: res.statusCode,
+        result,
+      });
+    });
+  }
 
-    addProduct(req, res) {
-        const query = `
+  fetchUpper(req, res) {
+    const query = `
+        SELECT * FROM Products
+        WHERE category_id = "1";
+        `;
+    db.query(query, (err, results) => {
+      if (err) throw err;
+      res.json({
+        status: res.statusCode,
+        results,
+      });
+    });
+  }
+  fetchLower(req, res) {
+    const query = `
+        SELECT * FROM Products
+        WHERE category_id = "2";
+        `;
+    db.query(query, (err, results) => {
+      if (err) throw err;
+      res.json({
+        status: res.statusCode,
+        results,
+      });
+    });
+  }
+  fetchShoes(req, res) {
+    const query = `
+        SELECT * FROM Products
+        WHERE category_id = "3";
+        `;
+    db.query(query, (err, results) => {
+      if (err) throw err;
+      res.json({
+        status: res.statusCode,
+        results,
+      });
+    });
+  }
+  fetchVans(req, res) {
+    const query = `
+        SELECT * FROM Products
+        WHERE brand_id = "1";
+        `;
+    db.query(query, (err, results) => {
+      if (err) throw err;
+      res.json({
+        status: res.statusCode,
+        results,
+      });
+    });
+  }
+  fetchNike(req, res) {
+    const query = `
+        SELECT * FROM Products
+        WHERE brand_id = "2";
+        `;
+    db.query(query, (err, results) => {
+      if (err) throw err;
+      res.json({
+        status: res.statusCode,
+        results,
+      });
+    });
+  }
+  fetchBalance(req, res) {
+    const query = `
+        SELECT * FROM Products
+        WHERE brand_id = "3";
+        `;
+    db.query(query, (err, results) => {
+      if (err) throw err;
+      res.json({
+        status: res.statusCode,
+        results,
+      });
+    });
+  }
+  fetchLevi(req, res) {
+    const query = `
+        SELECT * FROM Products
+        WHERE brand_id = "4";
+        `;
+    db.query(query, (err, results) => {
+      if (err) throw err;
+      res.json({
+        status: res.statusCode,
+        results,
+      });
+    });
+  }
+
+  addProduct(req, res) {
+    const query = `
             INSERT INTO Products
             SET ?;
-        `
-        db.query(query, [req.body],
-             (err) => {
-            if (err) throw err
-            res.json({
-                status: res.statusCode,
-                msg:"Successfully Added"
-            })
-        })
-    };
+        `;
+    db.query(query, [req.body], (err) => {
+      if (err) throw err;
+      res.json({
+        status: res.statusCode,
+        msg: "Successfully Added",
+      });
+    });
+  }
 
-    updateProduct(req, res) {
-        const query =`
+  updateProduct(req, res) {
+    const query = `
         UPDATE Products 
         SET ?
         WHERE product_id = ${req.params.id};
-        `
-        db.query(query, [req.body],
-            (err) => {
-            if(err) throw err
-            res.json({
-                status: res.statusCode,
-                msg: "Update Successful"
-            })
-        })
-    };
+        `;
+    db.query(query, [req.body], (err) => {
+      if (err) throw err;
+      res.json({
+        status: res.statusCode,
+        msg: "Update Successful",
+      });
+    });
+  }
 
-    deleteProducts(req, res) {
-        const query = `
+  deleteProducts(req, res) {
+    const query = `
         DELETE FROM Products 
         WHERE product_id =  ${req.params.id}
         `;
-        db.query(query,
-            (err, results) => {
-            if(err) throw err
-            res.json({
-                status: res.statusCode,
-                results
-            })
-        })
-    }
+    db.query(query, (err, results) => {
+      if (err) throw err;
+      res.json({
+        status: res.statusCode,
+        results,
+      });
+    });
+  }
 }
 
-module.exports = Products
+module.exports = Products;
