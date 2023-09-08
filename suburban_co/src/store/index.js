@@ -155,38 +155,19 @@ export default createStore({
       }
     },
     async logout(context) {
-      try {
-        // Make a request to your server's logout endpoint
-        await axios.get(`${suburbanUrl}/logout`);
-        
-        // Clear the local user data and token
-        context.commit("setUser", null); // Clear user data from Vuex store
-        cookies.remove("GrantedUserAccess"); // Clear the cookie
-        
-        // Notify the user and redirect to the login page
-        sweet({
-          title: "Logged Out",
-          text: "You have been successfully logged out.",
-          icon: "success",
-          timer: 3000,
-        });
-    
-        // Redirect the user to the login page
-        router.push({ name: "login" });
-      } catch (e) {
-        // Handle any errors that occur during the logout process
-        console.error("Logout error:", e);
-        sweet({
-          title: "Error",
-          text: "An error occurred during logout.",
-          icon: "error",
-          timer: 3000,
-        });
-      }
+      context.commit("setUser")
+      cookies.remove("GrantedUserAccess")
     },
     
-    deleteUser(context, payload) {
-
+    deleteUser( context, payload ) {
+      axios.delete(`${ suburbanUrl }/products/${ user_id }`)
+      .then((res) => {
+        console.log(res);
+        this.dispatch(fetchProducts);
+      })
+      .catch(( error ) => {
+        console.error(error);
+      })
     },
 
     // <==== Product Actions ====>

@@ -41,18 +41,8 @@
         <div class="form-control-wrapper">
           <div class="row">
             <div class="col">
-              <button
-                type="button"
-                class="btn forgetPwd"
-                data-bs-toggle="modal"
-                data-bs-target="#updateUserModal"
-              >
-                Forgot
-              </button>
-            </div>
-            <div class="col">
-              <router-link class="d-flex justify-content-center" to="/register"
-                >Sign Up</router-link
+              <router-link class="d-flex justify-content-center text-decoration-none" to="/register"
+                >Don't have an account ? Click here to register</router-link
               >
             </div>
           </div>

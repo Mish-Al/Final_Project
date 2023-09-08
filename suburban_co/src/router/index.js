@@ -70,11 +70,6 @@ const routes = [
     }
   },
   {
-    path: "/logout",
-    name: "logout",
-    component: () => import("../views/LoginView.vue"),
-  },
-  {
     path: "/contact",
     name: "contact",
     component: () => import("../views/ContactView.vue"),

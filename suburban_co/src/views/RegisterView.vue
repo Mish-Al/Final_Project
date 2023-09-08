@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="container">
-      <div class="row">
+      <div class="row" v-if="user">
         <form class="form" @submit.prevent="register">
           <div class="form-control-wrapper">
             <span class="inline">
@@ -30,7 +30,7 @@
               <input
                 type="email"
                 class="form-control"
-                placeholder="email"
+                placeholder="Email"
                 v-model="payload.email"
                 required
               />
@@ -51,10 +51,20 @@
               <input
                 type="password"
                 class="form-control"
-                placeholder="password"
+                placeholder="Password"
                 minlength="4"
                 maxlength="12"
                 v-model="payload.user_password"
+              />
+            </span>
+          </div>
+          <div class="form-control-wrapper">
+            <span class="inline">
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Role"
+                v-model="payload.user_role"
               />
             </span>
           </div>
@@ -82,6 +92,9 @@
           </div>
         </form>
       </div>
+      <div v-else class="row">
+        <SpinnerComp/>
+      </div>
     </div>
   </div>
 </template>
@@ -89,6 +102,7 @@
 <script>
 import { useCookies } from "vue3-cookies";
 const { cookies } = useCookies();
+import SpinnerComp from "@/components/SpinnerComp.vue";
 export default {
   data() {
     return {
@@ -108,9 +122,6 @@ export default {
       return this.$store.state.user;
       //  || JSON.parse( cookies.get('GrantedUserAccess'))
     },
-    spinner() {
-      return this.$store.state.spinner;
-    },
   },
   methods: {
     register() {
@@ -122,7 +133,10 @@ export default {
   // },
     mounted() {
     console.log(cookies.get("GrantedUserAccess"));
-  }
+  },
+  components:{
+    SpinnerComp
+}
 };
 </script>
 

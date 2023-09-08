@@ -6,8 +6,8 @@
  <div class="card card-upper">
   <img src="https://i.postimg.cc/Hk9BYk5t/pexels-cottonbro-studio-6626999.jpg" id="landing"
  alt="">
- <div class="card-img-overlay">
-  <h3>Welcome To Suburban Co.</h3>
+ <div class="card-img-overlay mt-5">
+  <h1>Welcome To Suburban Co.</h1>
      <a href="./AboutView.vue" class="btn upper">About Suburban Co.</a>
   </div>
 </div>
@@ -19,6 +19,9 @@
   <div class="card-img-overlay">
     <a href="./ProductsView.vue" class="btn">Visit Sneakers</a>
   </div>
+</div>
+<div class="up-left-content">
+  <h3>Check out our latest line of your favourite sneakers</h3>
 </div>
 </div>
 
@@ -73,6 +76,10 @@ export default {
   margin-top: 3rem;
   border: 4px solid green;
 }
+.up-left-content{
+  display: flex;
+  justify-content: right  ;
+}
 
 .mid-right{
   border: 4px solid red;
@@ -113,8 +120,8 @@ export default {
   /* color: #; */
   backdrop-filter: blur(1px);
 }
-.card-img-overlay h3 {
-  
+.card-img-overlay h1 {
+  color: #212529!important;
 }
 .card-img-overlay h5 {
 

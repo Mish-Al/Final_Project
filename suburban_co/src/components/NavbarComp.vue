@@ -47,9 +47,9 @@
                   <router-link class="nav-link" to="/about">About</router-link>
                 </li>
                
-                <li class="nav-item" v-show="isAdmin" data-bs-dismiss="offcanvas">
+                <li class="nav-item"  data-bs-dismiss="offcanvas">
                   <router-link class="nav-link" to="/admin"
-                    >Admin</router-link
+                  v-show="isAdmin">Admin</router-link
                   >
                 </li>
                 <li class="nav-item"  data-bs-dismiss="offcanvas">
@@ -75,6 +75,11 @@
                 <li class="nav-item" data-bs-dismiss="offcanvas">
                   <router-link class="nav-link" to="/register"
                     >Register</router-link
+                  >
+                </li>
+                <li class="nav-item" data-bs-dismiss="offcanvas">
+                  <router-link class="nav-link" to="/login"
+                     @click="logout">Log Out</router-link
                   >
                 </li>
               </ul>
@@ -104,10 +109,12 @@ const { cookies } = useCookies()
         isUser() {
           return this.result?.user_role?.toLowerCase() === "user"
         },
-        isAdminUser() {
-          return this.result?.user_role?.toLowerCase() === "admin" || this.result?.userRole?.toLowerCase() === "user"
-        }
         },
+        methods: {
+          logout() {
+            this.$store.dispatch('logout')
+          }
+        }
       }
 </script>
 
