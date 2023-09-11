@@ -55,6 +55,18 @@ export default createStore({
     setShoes(state, shoes) {
       state.shoes = shoes;
     },
+    setVans(state, vans) {
+      state.vans = vans;
+    },
+    setNike(state, nike) {
+      state.nike = nike;
+    },
+    setBalance(state, balance) {
+      state.balance = balance;
+    },
+    setlevi(state, levi) {
+      state.levi = levi;
+    },
     setImages(state, images) {
       state.images = images;
     },
@@ -267,6 +279,42 @@ export default createStore({
       try {
         const data = await axios.get(`${suburbanUrl}/shoes`);
         context.commit('setShoes', data.results)
+
+      } catch (e) {
+        console.log(e);
+      }
+    },
+    async fetchVans(context) {
+      try {
+        const data = await axios.get(`${suburbanUrl}/vans`);
+        context.commit('setVans', data.results)
+
+      } catch (e) {
+        console.log(e);
+      }
+    },
+    async fetchNike(context) {
+      try {
+        const data = await axios.get(`${suburbanUrl}/nike`);
+        context.commit('setNike', data.results)
+
+      } catch (e) {
+        console.log(e);
+      }
+    },
+    async fetchBalance(context) {
+      try {
+        const data = await axios.get(`${suburbanUrl}/balance`);
+        context.commit('setBalance', data.results)
+
+      } catch (e) {
+        console.log(e);
+      }
+    },
+    async fetchLevi(context) {
+      try {
+        const data = await axios.get(`${suburbanUrl}/levi`);
+        context.commit('setLevi', data.results)
 
       } catch (e) {
         console.log(e);

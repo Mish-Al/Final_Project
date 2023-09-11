@@ -1,6 +1,5 @@
 <template>
     <div>
-        <button :to="upper"></button>
         <section class="upper" v-for="product in products" :key="product.product_id">
         <div class="card">
             <div class="card-head">
