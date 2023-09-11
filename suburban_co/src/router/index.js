@@ -65,7 +65,7 @@ const routes = [
     component: () => import("../views/LoginView.vue"),
     afterEnter() {
       if(!cookies.delete('GrantedUserAccess')) {
-      router.push({name: "login"})
+      router.push({name: "home"})
       }
     }
   },
@@ -88,6 +88,12 @@ const routes = [
     path: "/shoes",
     name: "shoes",
     component: () => import("../views/ShoesView.vue"),
+  },
+  {
+    path: "/single/:id",
+    name: "single",
+    props: true,
+    component: () => import("../views/SingleView.vue"),
   },
 ]
 

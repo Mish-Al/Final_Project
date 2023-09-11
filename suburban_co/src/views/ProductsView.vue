@@ -15,18 +15,30 @@
     </div>
   </div>
 </nav>
-        <section class="upper" v-for="product in products" :key="product.product_id">
-        <div class="card">
-            <div class="card-head">
-                <img :src="product.image_url" :alt="product.product_name">
-            </div>
-            <div class="card-body">
-                <h4 class="card-head">{{ product.product_name }}</h4>
-                <p class="card-text">{{ product.price }}</p>
-            </div>
-        </div>
-    </section>
+<div class="my-5 container" >
+            <div class="row" style="margin-top: 3rem;font-family: 'Merriweather', serif;" v-if="products">
+      <div class="car col-12 col-sm-6 col-md-4 p-2" v-for="product in products" :key="product.prodID">
+                  <img :src="product.image_url" :alt="product.product_name" style="width:14rem;height:18rem;" loading="lazy">
+                  <div class="card-body">
+                      <br>
+                      <h5 class="card-title">{{ product.product_name }}</h5>
+                      <h5 class="card-title">{{ product.price }}</h5>
+                      <router-link :to=
+                      "{name: 'single',
+                      params: {id: product.product_id},
+                      query: {
+                          product_name: product.product_name,
+                          product_info: product.product_info,
+                          img: product.image_url,
+                          price: product.price,
+                        }
+                    }" class="btn">View More</router-link><span>
+                        <button class="btn" @click="addToCart(product)">Buy Now</button></span>
+                    </div>
+      </div>
     </div>
+    </div>
+        </div>
 </template>
 
 <script>

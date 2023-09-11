@@ -7,7 +7,7 @@
   <img src="https://i.postimg.cc/Hk9BYk5t/pexels-cottonbro-studio-6626999.jpg" id="landing"
  alt="">
  <div class="card-img-overlay mt-5">
-  <h1>Welcome To Suburban Co.</h1>
+  <h1 class="headhome">Welcome To Suburban Co.</h1>
      <a href="./AboutView.vue" class="btn upper">About Suburban Co.</a>
   </div>
 </div>
@@ -69,6 +69,7 @@ export default {
 .card-img-overlay-upper {
   /* color: #; */
   backdrop-filter: blur(4px);
+  
 }
 
 .up-left{
@@ -145,4 +146,16 @@ export default {
 .btn:hover{
   background-color: #495057;
 }
+.headhome{
+  background-color: #adb5bd;
+  opacity: 70%;
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 23rem;
+  margin-top: 5rem;
+  border-radius: 3px;
+}
+
 </style>

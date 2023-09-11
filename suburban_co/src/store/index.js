@@ -45,6 +45,9 @@ export default createStore({
     setProduct(state, product) {
       state.product = product;
     },
+    setDeleteProducts(state, products) {
+      state.products = products
+    },
 
     setUpper(state, upper) {
       state.upper = upper;
@@ -130,6 +133,7 @@ export default createStore({
           });
           //explain line  below
           context.dispatch("fetchUsers");
+          cookies.set("GrantedUserAccess", { token, msg, result });
           router.push({ name: "home" });
         } else {
           sweet({
@@ -246,15 +250,13 @@ export default createStore({
         console.log(e);
       }
     },
-    deleteProduct(product_id) {
-      axios.delete(`${suburbanUrl}/product/${product_id}`)
-      .then((res) => {
-        console.log(res);
-        this.dispatch('fetchhProducts')
-      })
-      .catch((error) => {
-        console.log(error);
-      })
+    async deleteProducts(context, product_id) {
+      try{
+        const response = await axios.delete(`${suburbanUrl}/product/${product_id}`)
+        context.commit("setdeleteProducts", response.data)
+      }catch(e){
+        context.commit("setMsg", "An error occurred")
+      }
     },
     // <==== Category Actions ====>
     async fetchUpper(context) {
