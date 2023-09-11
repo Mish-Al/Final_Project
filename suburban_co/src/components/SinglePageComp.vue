@@ -1,21 +1,21 @@
 <template>
     <div>
       <div class="row" style="margin-top: 3rem display: flex; justify-content: center; align-items: center;">
-        <div
-        >
+        <div class="card-head col-6">
           <img
             :src="$route.query.img"
             :alt="$route.query.img"
-            style="width:14rem;height:18rem;"
+            style="width:25rem;height:26rem;object-fit: contain;"
             loading="lazy"
           />
-          <div class="card-body">
-            <br />
-            <h5 class="card-title">{{ $route.query.product_name }}</h5>
-            <h5 class="card-title">{{ $route.query.price }}</h5>
-            <p class="card-text">{{ $route.query.product_info }}</p>
-          </div>
         </div>
+         
+          <div class="card-body col-6" style="height: 65vh;">
+            <h5 class="card-title" style="width: 80%; margin-top: 4rem;">{{ $route.query.product_name }}</h5>
+            <h5 class="card-title" style="width: 80%;">{{ $route.query.price }}</h5>
+              <p class="card-text" style="width: 80%;">{{ $route.query.product_info }}</p>
+              <button class="btn" @click="addToCart(product)">Buy Now</button>
+          </div>
       </div>
     </div>
   </template>
@@ -36,5 +36,10 @@ h5 {
 }
 h6 {
     font-family: 'Taviraj', serif;
+}
+
+
+@media screen and (min-width: 300px) {
+  
 }
 </style>

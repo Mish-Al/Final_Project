@@ -1,6 +1,6 @@
 <template>
     <div>
-        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <nav class="navbar navbar-expand">
   <div class="container-fluid">
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -17,7 +17,7 @@
 </nav>
 <div class="my-5 container" >
             <div class="row" style="margin-top: 3rem;font-family: 'Merriweather', serif;" v-if="products">
-      <div class="car col-12 col-sm-6 col-md-4 p-2" v-for="product in products" :key="product.prodID">
+      <div class="car col-12 col-sm-6 col-md-4 p-2" v-for="product in products" :key="product.product_id">
                   <img :src="product.image_url" :alt="product.product_name" style="width:14rem;height:18rem;" loading="lazy">
                   <div class="card-body">
                       <br>
@@ -65,6 +65,16 @@ img {
     width: 20rem;
     height: 20.5rem;
     object-fit: contain;
+}
+.collapse{
+display: flex;
+justify-content: center;
+align-items: center;
+}
+
+.nav-link{
+  margin: 5px;
+  border-bottom: 3px ridge ;
 }
 
 </style>
