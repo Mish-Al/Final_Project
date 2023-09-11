@@ -29,48 +29,45 @@ class Products {
     });
   }
 
-fetchProducts(req, res) {
-  const { category } = req.query;
-  let query = 'SELECT * FROM Products';
-
-  if (category) {
-    query += ` WHERE category_id = "${category}"`;
-  }
-
-  db.query(query, (err, results) => {
-    if (err) {
-      console.error(err);
-      return res.status(500).json({ error: 'Internal Server Error' });
-    }
-
-    res.json({
-      status: res.statusCode,
-      results,
+  fetchUpper(req, res) {
+    const query = `
+        SELECT * FROM Products
+        WHERE category_id = "1";
+        `;
+    db.query(query, (err, results) => {
+      if (err) throw err;
+      res.json({
+        status: res.statusCode,
+        results,
+      });
     });
-  });
-}
-
-fetchProductsByBrand(req, res) {
-  const { brand_id } = req.query;
-  let query = 'SELECT * FROM Products';
-
-  if (brand_id) {
-    query += ` WHERE brand_id = "${brand_id}"`;
   }
-
-  db.query(query, (err, results) => {
-    if (err) {
-      console.error(err);
-      return res.status(500).json({ error: 'Internal Server Error' });
-    }
-
-    res.json({
-      status: res.statusCode,
-      results,
+  fetchLower(req, res) {
+    const query = `
+        SELECT * FROM Products
+        WHERE category_id = "2";
+        `;
+    db.query(query, (err, results) => {
+      if (err) throw err;
+      res.json({
+        status: res.statusCode,
+        results,
+      });
     });
-  });
-}
-
+  }
+  fetchShoes(req, res) {
+    const query = `
+        SELECT * FROM Products
+        WHERE category_id = "3";
+        `;
+    db.query(query, (err, results) => {
+      if (err) throw err;
+      res.json({
+        status: res.statusCode,
+        results,
+      });
+    });
+  }
   fetchVans(req, res) {
     const query = `
         SELECT * FROM Products
