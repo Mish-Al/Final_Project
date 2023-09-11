@@ -15,7 +15,7 @@ export default createStore({
     product: null,
     upper: null,
     lower: null,
-    foot: null,
+    shoes: null,
     images: null,
     brands: null,
     sizes: null,
@@ -52,8 +52,8 @@ export default createStore({
     setLower(state, lower) {
       state.lower = lower;
     },
-    setFoot(state, foot) {
-      state.foot = foot;
+    setShoes(state, shoes) {
+      state.shoes = shoes;
     },
     setImages(state, images) {
       state.images = images;
@@ -208,17 +208,30 @@ export default createStore({
     // <==== Product Actions ====>
     async fetchProducts(context) {
       try {
-        const data = await axios.get(`${suburbanUrl}products`);
+        const {data} = await axios.get(`${suburbanUrl}/products`);
+        context.commit("setProducts", data.results)
+        console.log(data.result)
       } catch (e) {
-        context.commit(console.log(e));
+        console.log(e);
+      }
+    },
+    async fetchImages(context) {
+      try {
+        const {data} = await axios.get(`${suburbanUrl}/images`);
+        context.commit("setImages", data.results)
+        console.log(data.result)
+      } catch (e) {
+        console.log(e);
       }
     },
 
     async fetchProduct(context, product_id) {
       try {
-        const data = await axios.get(`${suburbanUrl}products/${product_id}`);
+        const data = await axios.get(`${suburbanUrl}/products/${product_id}`);
+        context.commit('setProduct', data.results)
+
       } catch (e) {
-        context.commit(console.log(e));
+        console.log(e);
       }
     },
     deleteProduct(product_id) {
@@ -234,23 +247,29 @@ export default createStore({
     // <==== Category Actions ====>
     async fetchUpper(context) {
       try {
-        const data = await axios.get(`${suburbanUrl}upper`);
+        const data = await axios.get(`${suburbanUrl}/upper`);
+        context.commit('setUpper', data.results)
+
       } catch (e) {
-        context.commit(console.log(e));
+        console.log(e);
       }
     },
-    async fetchProducts(context) {
+    async fetchLower(context) {
       try {
-        const data = await axios.get(`${suburbanUrl}products`);
+        const data = await axios.get(`${suburbanUrl}/lower`);
+        context.commit('setLower', data.results)
+
       } catch (e) {
-        context.commit(console.log(e));
+      console.log(e);
       }
     },
-    async fetchProducts(context) {
+    async fetchShoes(context) {
       try {
-        const data = await axios.get(`${suburbanUrl}products`);
+        const data = await axios.get(`${suburbanUrl}/shoes`);
+        context.commit('setShoes', data.results)
+
       } catch (e) {
-        context.commit(console.log(e));
+        console.log(e);
       }
     },
   },
