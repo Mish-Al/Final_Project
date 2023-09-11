@@ -259,27 +259,24 @@ export default createStore({
     // <==== Category Actions ====>
     async fetchUpper(context) {
       try {
-        const data = await axios.get(`${suburbanUrl}/upper`);
+        const {data} = await axios.get(`${suburbanUrl}/upper`);
         context.commit('setUpper', data.results)
-
       } catch (e) {
         console.log(e);
       }
     },
     async fetchLower(context) {
       try {
-        const data = await axios.get(`${suburbanUrl}/lower`);
+        const {data} = await axios.get(`${suburbanUrl}/lower`);
         context.commit('setLower', data.results)
-
       } catch (e) {
       console.log(e);
       }
     },
     async fetchShoes(context) {
       try {
-        const data = await axios.get(`${suburbanUrl}/shoes`);
+        const {data} = await axios.get(`${suburbanUrl}/shoes`);
         context.commit('setShoes', data.results)
-
       } catch (e) {
         console.log(e);
       }

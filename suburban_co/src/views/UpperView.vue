@@ -15,7 +15,7 @@
     </div>
   </div>
 </nav>
-        <section class="upper" v-for="product in products" :key="product.product_id">
+        <section class="upper" v-for="product in upper" :key="product.product_id">
         <div class="card">
             <div class="card-head">
                 <img :src="product.image_url" :alt="product.product_name">
@@ -37,12 +37,12 @@ import SpinnerComp from "@/components/SpinnerComp.vue";
             SpinnerComp,
         },
         computed: {
-            products() {
-                return this.$store.state.products
+            upper() {
+                return this.$store.state.upper
             },
         },
         mounted() {
-            this.$store.dispatch("fetchProducts")
+            this.$store.dispatch("fetchUpper")
         },     
 }
 
@@ -54,5 +54,13 @@ img {
     height: 20.5rem;
     object-fit: contain;
 }
-
+.collapse{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.upper{
+    display: flex;
+    justify-content: center;
+}
 </style>

@@ -73,7 +73,22 @@ const routes = [
     path: "/contact",
     name: "contact",
     component: () => import("../views/ContactView.vue"),
-  }
+  },
+  {
+    path: "/upper",
+    name: "upper",
+    component: () => import("../views/UpperView.vue"),
+  },
+  {
+    path: "/lower",
+    name: "lower",
+    component: () => import("../views/LowerView.vue"),
+  },
+  {
+    path: "/shoes",
+    name: "shoes",
+    component: () => import("../views/ShoesView.vue"),
+  },
 ]
 
 const router = createRouter({
