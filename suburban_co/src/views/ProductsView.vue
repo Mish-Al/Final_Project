@@ -1,16 +1,16 @@
 <template>
     <div>
-        <!-- <button href="/upper"></button> -->
+        <button :to="upper"></button>
         <section class="upper" v-for="product in products" :key="product.product_id">
         <div class="card">
+            <div class="card-head">
+                <img :src="product.image_url" :alt="product.product_name">
+            </div>
             <div class="card-body">
                 <h4 class="card-head">{{ product.product_name }}</h4>
                 <p class="card-text">{{ product.price }}</p>
             </div>
         </div>
-        <div class="card-head" v-for="image in images" :key="image.image_id">
-                <img :src="images.image_url" :alt="image.product_id">
-            </div>
     </section>
     </div>
 </template>
