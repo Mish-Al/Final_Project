@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="row" v-if="user">
 
     </div>
 </template>

@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="container">
-      <div class="row" v-if="user">
+      <div class="row">
         <form class="form" @submit.prevent="register">
           <div class="form-control-wrapper">
             <span class="inline">
@@ -39,7 +39,7 @@
           <div class="form-control-wrapper">
             <span class="inline">
               <input
-                type="number"
+                type="text"
                 class="form-control"
                 placeholder="Cell No. (optional)"
                 v-model="payload.phone"
@@ -92,9 +92,9 @@
           </div>
         </form>
       </div>
-      <div v-else class="row">
+      <!-- <div v-else class="row">
         <SpinnerComp/>
-      </div>
+      </div> -->
     </div>
   </div>
 </template>
@@ -102,7 +102,7 @@
 <script>
 import { useCookies } from "vue3-cookies";
 const { cookies } = useCookies();
-import SpinnerComp from "@/components/SpinnerComp.vue";
+// import SpinnerComp from "@/components/SpinnerComp.vue";
 export default {
   data() {
     return {
@@ -135,7 +135,7 @@ export default {
     console.log(cookies.get("GrantedUserAccess"));
   },
   components:{
-    SpinnerComp
+    // SpinnerComp
 }
 };
 </script>

@@ -53,14 +53,13 @@
 </template>
 
 <script>
-import NewUserComp from "@/components/NewUserComp";
+// import NewUserComp from "@/components/NewUserComp";
 import { useCookies } from "vue3-cookies";
 const { cookies } = useCookies();
 
 // import { computed } from 'vue';
 export default {
   components: {
-    NewUserComp,
   },
   data() {
     return {
@@ -84,9 +83,9 @@ export default {
     login() {
       this.$store.dispatch("login", this.payload);
     },
-    logout() {
-      this.$store.dispatch("logout", this.payload)
-    },
+    // logout() {
+    //   this.$store.dispatch("logout", this.payload)
+    // },
   },
   beforeCreate() {
     this.$store.dispatch('fetchUsers')

@@ -13,7 +13,9 @@ export default createStore({
     user: null,
     products: null,
     product: null,
-    categories: null,
+    upper: null,
+    lower: null,
+    foot: null,
     images: null,
     brands: null,
     sizes: null,
@@ -44,8 +46,14 @@ export default createStore({
       state.product = product;
     },
 
-    setCategories(state, categories) {
-      state.categories = categories;
+    setUpper(state, upper) {
+      state.upper = upper;
+    },
+    setLower(state, lower) {
+      state.lower = lower;
+    },
+    setFoot(state, foot) {
+      state.foot = foot;
     },
     setImages(state, images) {
       state.images = images;
@@ -108,7 +116,6 @@ export default createStore({
             icon: "success",
             timer: 3000,
           });
-
           //explain line  below
           context.dispatch("fetchUsers");
           router.push({ name: "home" });
@@ -157,17 +164,45 @@ export default createStore({
     async logout(context) {
       context.commit("setUser")
       cookies.remove("GrantedUserAccess")
+      router.push({ name: "login" })
     },
     
     deleteUser( context, payload ) {
-      axios.delete(`${ suburbanUrl }/products/${ user_id }`)
+      axios.delete(`${ suburbanUrl }/user/${ user_id }`)
       .then((res) => {
         console.log(res);
-        this.dispatch(fetchProducts);
+        this.dispatch(fetchUsers);
       })
       .catch(( error ) => {
         console.error(error);
       })
+    },
+
+    async addProduct(context) {
+      try {
+        const { msg } = (await axios.post(`${suburbanUrl}/register`, payload))
+          .data;
+        if (msg) {
+          sweet({
+            title: "Registration",
+            text: msg,
+            icon: "success",
+            timer: 3000,
+          });
+          //explain line  below
+          context.dispatch("fetchUsers");
+          router.push({ name: "home" });
+        } else {
+          sweet({
+            title: "Error",
+            text: "Oops, an error occured",
+            icon: "error",
+            timer: 3000,
+          });
+        }
+      } catch (e) {
+        context.commit(console.log(e));
+      }
     },
 
     // <==== Product Actions ====>
@@ -182,6 +217,38 @@ export default createStore({
     async fetchProduct(context, product_id) {
       try {
         const data = await axios.get(`${suburbanUrl}products/${product_id}`);
+      } catch (e) {
+        context.commit(console.log(e));
+      }
+    },
+    deleteProduct(product_id) {
+      axios.delete(`${suburbanUrl}/product/${product_id}`)
+      .then((res) => {
+        console.log(res);
+        this.dispatch('fetchhProducts')
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+    },
+    // <==== Category Actions ====>
+    async fetchUpper(context) {
+      try {
+        const data = await axios.get(`${suburbanUrl}upper`);
+      } catch (e) {
+        context.commit(console.log(e));
+      }
+    },
+    async fetchProducts(context) {
+      try {
+        const data = await axios.get(`${suburbanUrl}products`);
+      } catch (e) {
+        context.commit(console.log(e));
+      }
+    },
+    async fetchProducts(context) {
+      try {
+        const data = await axios.get(`${suburbanUrl}products`);
       } catch (e) {
         context.commit(console.log(e));
       }

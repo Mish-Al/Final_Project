@@ -1,11 +1,9 @@
 <template>
     <section class="upper" v-for="product in products" :key="product.category_id">
-    <div class="card" v-for="product in products" :key="product.product_id">
-        <div class="card-head" v-for="image in images" :key="image.product_id">
-            <img :src="image.product_id" class="card-img-top" :alt="product.product_name">
+        <div class="card">
+
         </div>
-    </div>
-</section>
+    </section>
 </template>
 
 <script>
