@@ -39,16 +39,6 @@
           <div class="form-control-wrapper">
             <span class="inline">
               <input
-                type="text"
-                class="form-control"
-                placeholder="Cell No. (optional)"
-                v-model="payload.phone"
-              />
-            </span>
-          </div>
-          <div class="form-control-wrapper">
-            <span class="inline">
-              <input
                 type="password"
                 class="form-control"
                 placeholder="Password"
@@ -110,7 +100,6 @@ export default {
         first_name: "",
         last_name: "",
         email: "",
-        phone: "",
         user_password: "",
         user_role: "",
         image_url: "https://i.postimg.cc/3rZ0H0D8/profile-Image.png",

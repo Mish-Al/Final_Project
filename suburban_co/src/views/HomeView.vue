@@ -6,7 +6,7 @@
  <div class="card card-upper">
   <img src="https://i.postimg.cc/Hk9BYk5t/pexels-cottonbro-studio-6626999.jpg" id="landing"
  alt="">
- <div class="card-img-overlay mt-5">
+ <div class="card-img-overlay mt-5  ">
   <h1 class="headhome">Welcome To Suburban Co.</h1>
      <a href="./AboutView.vue" class="btn upper">About Suburban Co.</a>
   </div>

@@ -66,6 +66,9 @@ img {
     height: 20.5rem;
     object-fit: contain;
 }
+.car{
+  border: 3px groove ;
+}
 .collapse{
 display: flex;
 justify-content: center;
