@@ -10,10 +10,11 @@
         </div>
          
           <div class="card-body col-12 col-md-6">
-            <h3 class="card-title" style="width: 100%; margin-top: 4rem;">{{ $route.query.product_name }}</h3>
-            <h5 class="card-title" style="width: 100%;">{{ $route.query.price }}</h5>
-              <p class="card-text" style="width: 100%;">{{ $route.query.product_info }}</p>
-              <button class="btn" @click="addToCart(product)">Buy Now</button>
+            <h1 class="card-title" style="margin-top: 4rem;">{{ $route.query.product_name }}</h1>
+            <h5 class="card-title">{{ $route.query.price }}</h5>
+            <div class="container">
+              <p class="card-text">{{ $route.query.product_info }}</p></div>
+              <button class="btn" @click="addToCart(product)">add to cart</button>
           </div>
       </div>
     </div>
@@ -33,26 +34,50 @@ h5 {
     font-family: 'Taviraj', serif;
     margin-bottom: 1rem;
 }
-h6 {
-    font-family: 'Taviraj', serif;
-}
+
 .card-body{
   height: 65vh;
+}
+
+.card-text{
+  width: 100%;
+  
+}
+.btn{
+  margin-top: 2rem;
+  background-color: #212529;
+  border: 3px ridge #495057;
+  color: #E9ECEF;
+}
+.btn:hover{
+  background-color: #CED4DA;
+  color: #495057;
+  border: 3px ridge #E9ECEF;
+}
+.card-title{
+  width: 100%;
 }
 
 img {
   width: 25rem;
   height: 26rem;
+  object-fit: contain;
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 700px) {
   img {
     width: 15rem;
     height: 17rem;
     margin-top: 2rem;
   }
   .card-body{
-    height: 43vh;
+    height: 43%;
+  }
+  .card-text{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
   }
 }
 </style>

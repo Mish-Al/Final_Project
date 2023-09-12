@@ -16,9 +16,9 @@
   </div>
 </nav>
 <div class="my-5 container" >
-            <div class="row" style="margin-top: 3rem;font-family: 'Merriweather', serif;" v-if="products">
+            <div class="row" style="margin-top: 3rem;" v-if="products">
       <div class="car col-12 col-sm-6 col-md-4 p-2" v-for="product in products" :key="product.product_id">
-                  <img :src="product.image_url" :alt="product.product_name" style="width:14rem;height:18rem;" loading="lazy">
+                  <img :src="product.image_url" :alt="product.product_name" style="width:12rem;height:16rem;" loading="lazy">
                   <div class="card-body">
                       <br>
                       <h5 class="card-title">{{ product.product_name }}</h5>
@@ -32,8 +32,8 @@
                           img: product.image_url,
                           price: product.price,
                         }
-                    }" class="btn">View More</router-link><span>
-                        <button class="btn" @click="addToCart(product)">Buy Now</button></span>
+                    }" class="btn"><i class="bi bi-info-circle"></i></router-link><span>
+                        <button class="btn" @click="addToCart(product)"><i class="bi bi-cart4"></i></button></span>
                     </div>
       </div>
     </div>
@@ -67,7 +67,11 @@ img {
     object-fit: contain;
 }
 .car{
-  border: 3px groove ;
+
+  background-color: #F8F9FA ;
+}
+.row{
+  border: 3px ridge #E9ECEF;
 }
 .collapse{
 display: flex;
@@ -78,6 +82,18 @@ align-items: center;
 .nav-link{
   margin: 5px;
   border-bottom: 3px ridge ;
+}
+.btn{
+  background-color: #212529;
+  border: 2px ridge #495057;
+  color: #E9ECEF;
+  margin: 4px;
+  width: 4rem;
+}
+.btn:hover{
+  background-color: #CED4DA;
+  color: #495057;
+  border: 2px ridge #E9ECEF;
 }
 
 </style>

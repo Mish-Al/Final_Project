@@ -18,7 +18,7 @@ export default {
 
 <style>
 #app {
-  font-family: 'Cinzel', serif;
+  /* font-family: 'Cinzel', serif; */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
