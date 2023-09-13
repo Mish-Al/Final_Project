@@ -123,7 +123,7 @@ const { cookies } = useCookies()
 
 <style scoped>
 .navbar{
-  background-color: #DEE2E6;
+  background-color: #E9ECEF;
 }
  #offcanvasNavbarLabel img{
     width: 18rem;
