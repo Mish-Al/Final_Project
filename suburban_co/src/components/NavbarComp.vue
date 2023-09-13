@@ -49,7 +49,7 @@
                
                 <li class="nav-item"  data-bs-dismiss="offcanvas">
                   <router-link class="nav-link" to="/admin"
-                >Admin</router-link
+                 v-show="isAdmin">Admin</router-link
                   >
                 </li>
                 <li class="nav-item"  data-bs-dismiss="offcanvas">
