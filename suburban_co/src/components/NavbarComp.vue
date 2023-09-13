@@ -69,12 +69,12 @@
                 </li>
                 <li class="nav-item" data-bs-dismiss="offcanvas">
                   <router-link class="nav-link" to="/login"
-                    >Log In</router-link
+                   v-if="!user">Log In</router-link
                   >
                 </li>
                 <li class="nav-item" data-bs-dismiss="offcanvas">
                   <router-link class="nav-link" to="/register"
-                    >Register</router-link
+                    v-if="!user">Register</router-link
                   >
                 </li>
                 <li class="nav-item" data-bs-dismiss="offcanvas">
@@ -109,6 +109,9 @@ const { cookies } = useCookies()
         isUser() {
           return this.result?.user_role?.toLowerCase() === "user"
         },
+        isAdminUser() {
+          return this.result?.user_role?.toLowerCase() === "admin" || this.result?.user_role?.toLowerCase() === "user"
+        }
         },
         methods: {
           logout() {

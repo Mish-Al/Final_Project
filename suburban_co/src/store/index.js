@@ -183,15 +183,14 @@ export default createStore({
       router.push({ name: "login" })
     },
     
-    deleteUser( context, payload ) {
-      axios.delete(`${ suburbanUrl }/user/${ user_id }`)
-      .then((res) => {
-        console.log(res);
-        this.dispatch(fetchUsers);
-      })
-      .catch(( error ) => {
-        console.error(error);
-      })
+    async DeleteUsers(context, user_id) {
+      try{
+        const response = await axios.delete(`${suburbanUrl}/users/${user_id}`)
+        context.commit("setDeleteUsers", response.data)
+        location.reload()
+      }catch(e){
+        context.commit("setMsg", "An error occurred")
+      }
     },
 
     async addProduct(context) {
@@ -250,10 +249,11 @@ export default createStore({
         console.log(e);
       }
     },
-    async deleteProducts(context, product_id) {
+    async DeleteProducts(context, product_id) {
       try{
         const response = await axios.delete(`${suburbanUrl}/product/${product_id}`)
-        context.commit("setdeleteProducts", response.data)
+        context.commit("setDeleteProducts", response.data)
+        location.reload()
       }catch(e){
         context.commit("setMsg", "An error occurred")
       }

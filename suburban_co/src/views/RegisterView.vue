@@ -53,16 +53,6 @@
               <input
                 type="text"
                 class="form-control"
-                placeholder="Role"
-                v-model="payload.user_role"
-              />
-            </span>
-          </div>
-          <div class="form-control-wrapper">
-            <span class="inline">
-              <input
-                type="text"
-                class="form-control"
                 v-model="payload.image_url"
               />
             </span>
@@ -101,7 +91,6 @@ export default {
         last_name: "",
         email: "",
         user_password: "",
-        user_role: "",
         image_url: "https://i.postimg.cc/3rZ0H0D8/profile-Image.png",
       },
     };
