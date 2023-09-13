@@ -50,6 +50,20 @@ class Orders {
     });
   }
 
+  deleteOrders(req, res) {
+    const query = `
+        DELETE FROM Orders 
+        WHERE order_id =  ${req.params.id}
+        `;
+    db.query(query, (err, results) => {
+      if (err) throw err;
+      res.json({
+        status: res.statusCode,
+        results,
+      });
+    });
+  }
+
 }
 
 module.exports = Orders

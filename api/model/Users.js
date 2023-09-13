@@ -84,7 +84,7 @@ addUser(req, res) {
 login(req, res) {
     const {email, user_password} = req.body
     const query = `
-    SELECT  first_name, last_name, email, user_password
+    SELECT  first_name, last_name, email, user_password, user_role
     FROM Users
     WHERE email = '${email}';
     `
