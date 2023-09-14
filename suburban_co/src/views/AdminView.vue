@@ -174,7 +174,135 @@
     <br />
     <h1>ADMIN</h1>
     <br />
-    
+    <button
+      type="button"
+      style="margin-bottom: 1rem"
+      class="btn"
+      data-bs-toggle="modal"
+      data-bs-target="#MishProd"
+    >
+      Add Product
+    </button>
+    <div
+      class="modal fade"
+      id="MishProd"
+      tabindex="-1"
+      aria-labelledby="MishProdLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="MishProd">New Product</h1>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <form class="form" @submit.prevent="registerP">
+              <div class="form-control-wrapper">
+                <span class="inline">
+                  <input
+                    type="name"
+                    class="form-control"
+                    placeholder="Product Name"
+                    v-model="prodpayload.product_name"
+                    required
+                  />
+                </span>
+              </div>
+              <br>
+              <div class="form-control-wrapper">
+                <span class="inline">
+                  <input
+                    type="number"
+                    class="form-control"
+                    placeholder="Price"
+                    v-model="prodpayload.price"
+                    required
+                  />
+                </span>
+              </div>
+              <br>
+              <div class="form-control-wrapper">
+                <span class="inline">
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Image"
+                    v-model="prodpayload.image_url"
+                    required
+                  />
+                </span>
+              </div>
+              <br>
+              <div class="form-control-wrapper">
+                <span class="inline">
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Product Info"
+                    v-model="prodpayload.product_info"
+                  />
+                </span>
+              </div>
+              <br>
+              <div class="form-control-wrapper">
+                <span class="inline">
+                  <input
+                    type="number"
+                    class="form-control"
+                    placeholder="category Id"
+                    v-model="prodpayload.category_id"
+                  />
+                </span>
+              </div>
+              <div class="form-control-wrapper">
+                <span class="inline">
+                  <input
+                    type="number"
+                    class="form-control"
+                    placeholder="brand Id"
+                    v-model="prodpayload.brand_id"
+                  />
+                </span>
+              </div>
+              <div class="form-control-wrapper">
+                <span class="inline">
+                  <input
+                    type="number"
+                    class="form-control"
+                    placeholder="size Id"
+                    v-model="prodpayload.size_id"
+                  />
+                </span>
+              </div>
+            </form>
+            <!-- <button type="submit" class="btn">Add</button> -->
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+            <button type="submit" class="btn btn-success">
+                    Submit
+                    <span
+                      v-show="spinner"
+                      class="spinner-border spinner-border-sm"
+                      role="status"
+                      aria-hidden="true"
+                    ></span>
+                  </button>          </div>
+        </div>
+      </div>
+    </div>
     <div
       class="container"
       style="
@@ -210,7 +338,7 @@
                 <button
                   class="btn"
                   type="button"
-                  @click="DeleteProducts(product.product_id)"
+                  @click="deleteProduct(product.product_id)"
                 >
                   <i class="bi bi-trash"></i>
                 </button>
@@ -242,6 +370,15 @@ export default {
         user_password: "",
         image_url: "https://i.postimg.cc/3rZ0H0D8/profile-Image.png",
       },
+      prodpayload: {
+        product_name: "",
+        product_info: "",
+        price: "",
+        category_id: "",
+        brand_id: "",
+        size_id: "",
+        image_url: "",
+      }
     };
   },
   computed: {
@@ -263,11 +400,11 @@ export default {
     // addProduct() {
     //     this.$store.dispatch('addProduct', this.payload)
     // },
-    DeleteProducts(product_id) {
-      this.$store.dispatch("DeleteProducts", product_id);
+    deleteProduct(product_id) {
+      this.$store.dispatch("deleteProduct", product_id);
     },
-    DeleteUsers(user_id) {
-      this.$store.dispatch("DeleteUsers", user_id);
+    deleteUser(user_id) {
+      this.$store.dispatch("deleteUser", user_id);
     },
   },
 };

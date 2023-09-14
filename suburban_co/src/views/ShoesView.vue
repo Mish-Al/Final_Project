@@ -23,8 +23,7 @@
                     <br>
                     <h5 class="card-title">{{ product.product_name }}</h5>
                     <h5 class="card-title">{{ product.price }}</h5>
-                    <router-link :to=
-                    "{name: 'single',
+                    <router-link :to="{name: 'single',
                     params: {id: product.product_id},
                     query: {
                         product_name: product.product_name,

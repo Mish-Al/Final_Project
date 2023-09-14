@@ -1,7 +1,7 @@
 <template>
   <NavbarComp />
   <router-view />
-  <FooterComp />
+  <FooterComp/>
 </template>
 
 <script>

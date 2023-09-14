@@ -45,8 +45,8 @@ export default createStore({
     setProduct(state, product) {
       state.product = product;
     },
-    setDeleteProducts(state, products) {
-      state.products = products
+    setDeleteProducts(state, data) {
+      state.products = data
     },
 
     setUpper(state, upper) {
@@ -148,6 +148,33 @@ export default createStore({
       }
     },
 
+    async registerP(context, prodpayload) {
+      try {
+        const { results } = (await axios.post(`${suburbanUrl}/products`, prodpayload))
+        context.commit("setProducts", results.data)
+        console.log(results.data);
+        if (msg) {
+          sweet({
+            title: "Product Added",
+            text: msg,
+            icon: "success",
+            timer: 3000,
+          });
+          //explain line  below
+          context.dispatch("fetchProducts");
+        } else {
+          sweet({
+            title: "Error",
+            text: "Oops, an error occured",
+            icon: "error",
+            timer: 3000,
+          });
+        }
+      } catch (e) {
+        context.commit(console.log(e));
+      }
+    },
+
     async login(context, payload) {
       try {
         const { msg, token, result } = (
@@ -183,15 +210,15 @@ export default createStore({
       router.push({ name: "login" })
     },
     
-    async DeleteUsers(context, user_id) {
-      try{
-        const response = await axios.delete(`${suburbanUrl}/users/${user_id}`)
-        context.commit("setDeleteUsers", response.data)
-        location.reload()
-      }catch(e){
-        context.commit("setMsg", "An error occurred")
-      }
-    },
+    // async DeleteUsers(context, user_id) {
+    //   try{
+    //     const response = await axios.delete(`${suburbanUrl}/users/${user_id}`)
+    //     context.commit("setDeleteUsers", response.data)
+    //     location.reload()
+    //   }catch(e){
+    //     context.commit("setMsg", "An error occurred")
+    //   }
+    // },
 
     async addProduct(context) {
       try {
@@ -249,13 +276,31 @@ export default createStore({
         console.log(e);
       }
     },
-    async DeleteProducts(context, product_id) {
-      try{
-        const response = await axios.delete(`${suburbanUrl}/product/${product_id}`)
-        context.commit("setDeleteProducts", response.data)
+    // async DeleteProducts(context, product_id) {
+    //   try{
+    //     const response = await axios.delete(`${suburbanUrl}/product/${product_id}`)
+    //     context.commit("setDeleteProducts", response.data)
+    //     location.reload()
+    //   }catch(e){
+    //     context.commit("setMsg", "An error occurred")
+    //   }
+    // },
+    async deleteUser(context, userID){
+      try {
+        const response = await axios.delete(`${suburbanUrl}/user/${userID}`)
+        context.commit('setDeleteUsers', response)
         location.reload()
-      }catch(e){
-        context.commit("setMsg", "An error occurred")
+      } catch (error) {
+        console.log(error);
+      }
+    },
+    async deleteProduct(context, product_id){
+      try {
+        const response = await axios.delete(`${suburbanUrl}/products/${product_id}`)
+        context.commit('setDeleteProducts', response)
+        location.reload()
+      } catch (error) {
+        console.log(error);
       }
     },
     // <==== Category Actions ====>

@@ -23,7 +23,7 @@
               maxlength="12"
               v-model="payload.user_password"
             />
-          </span>
+          </span>[kiz]
         </div>
         <div class="form-control-wrapper">
           <div class="col">
