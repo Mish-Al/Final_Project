@@ -155,11 +155,11 @@ class Products {
         DELETE FROM Products 
         WHERE product_id =  ${req.params.id}
         `;
-    db.query(query, (err, results) => {
+    db.query(query, (err) => {
       if (err) throw err;
       res.json({
         status: res.statusCode,
-        results,
+        msg: 'Product removed'
       });
     });
   }
