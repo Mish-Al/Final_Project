@@ -148,14 +148,14 @@ export default createStore({
       }
     },
 
-    async registerP(context, prodpayload) {
+    async addProductmain(context, prodpayload) {
       try {
-        const { results } = (await axios.post(`${suburbanUrl}/products`, prodpayload))
-        context.commit("setProducts", results.data)
-        console.log(results.data);
+        const { msg } = (await axios.post(`${suburbanUrl}/products`, prodpayload))
+          .data;
+          console.log("sleeper");
         if (msg) {
           sweet({
-            title: "Product Added",
+            title: "Add product",
             text: msg,
             icon: "success",
             timer: 3000,
@@ -252,7 +252,6 @@ export default createStore({
       try {
         const {data} = await axios.get(`${suburbanUrl}/products`);
         context.commit("setProducts", data.results)
-        console.log(data.result)
       } catch (e) {
         console.log(e);
       }
@@ -261,7 +260,6 @@ export default createStore({
       try {
         const {data} = await axios.get(`${suburbanUrl}/images`);
         context.commit("setImages", data.results)
-        console.log(data.result)
       } catch (e) {
         console.log(e);
       }

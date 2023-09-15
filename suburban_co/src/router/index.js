@@ -60,6 +60,16 @@ const routes = [
     }
   },
   {
+    path: "/cart",
+    name: "cart",
+    component: () => import("../views/CartView.vue"),
+    beforeEnter() {
+      if(!cookies.get('GrantedUserAccess')) {
+      router.push({name: "login"})
+      }
+    }
+  },
+  {
     path: "/login",
     name: "login",
     component: () => import("../views/LoginView.vue"),

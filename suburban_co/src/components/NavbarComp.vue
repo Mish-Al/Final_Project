@@ -68,6 +68,11 @@
                   >
                 </li>
                 <li class="nav-item" data-bs-dismiss="offcanvas">
+                  <router-link class="nav-link" to="/cart"
+                    >Cart</router-link
+                  >
+                </li>
+                <li class="nav-item" data-bs-dismiss="offcanvas">
                   <router-link class="nav-link" to="/login"
                    v-if="!user">Log In</router-link
                   >

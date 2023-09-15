@@ -1,6 +1,6 @@
 <template>
-  <div class="about">
-    <h1>USERS</h1>
+  <div class="about" style="color: #6C757D">
+    <h1>Admin</h1>
     <br />
     <button
       type="button"
@@ -102,12 +102,12 @@
             </button>
             <button type="submit" class="btn btn-success">
                     Submit
-                    <span
+                    <!-- <span
                       v-show="spinner"
                       class="spinner-border spinner-border-sm"
                       role="status"
                       aria-hidden="true"
-                    ></span>
+                    ></span> -->
                   </button>          </div>
         </div>
       </div>
@@ -126,8 +126,8 @@
         margin-bottom: 1rem;
       "
     >
-      <div class="table-responsive" v-if="users">
-        <table class="table users" style="border: 3px red">
+      <div class="table-responsive" style="margin-top: 1rem; border-radius: 1rem;" v-if="users">
+        <table class="table users" style="border: 3px  #6C757D">
           <thead>
             <tr>
               <th scope="col">First Name</th>
@@ -172,7 +172,7 @@
     
     <br />
     <br />
-    <h1>ADMIN</h1>
+    <p></p>
     <br />
     <button
       type="button"
@@ -202,7 +202,7 @@
             ></button>
           </div>
           <div class="modal-body">
-            <form class="form" @submit.prevent="registerP">
+            <form class="form">
               <div class="form-control-wrapper">
                 <span class="inline">
                   <input
@@ -250,36 +250,6 @@
                 </span>
               </div>
               <br>
-              <div class="form-control-wrapper">
-                <span class="inline">
-                  <input
-                    type="number"
-                    class="form-control"
-                    placeholder="category Id"
-                    v-model="prodpayload.category_id"
-                  />
-                </span>
-              </div>
-              <div class="form-control-wrapper">
-                <span class="inline">
-                  <input
-                    type="number"
-                    class="form-control"
-                    placeholder="brand Id"
-                    v-model="prodpayload.brand_id"
-                  />
-                </span>
-              </div>
-              <div class="form-control-wrapper">
-                <span class="inline">
-                  <input
-                    type="number"
-                    class="form-control"
-                    placeholder="size Id"
-                    v-model="prodpayload.size_id"
-                  />
-                </span>
-              </div>
             </form>
             <!-- <button type="submit" class="btn">Add</button> -->
           </div>
@@ -291,14 +261,14 @@
             >
               Close
             </button>
-            <button type="submit" class="btn btn-success">
+            <button @click="addProduct" type="submit" class="btn btn-success">
                     Submit
-                    <span
+                    <!-- <span
                       v-show="spinner"
                       class="spinner-border spinner-border-sm"
                       role="status"
                       aria-hidden="true"
-                    ></span>
+                    ></span> -->
                   </button>          </div>
         </div>
       </div>
@@ -312,8 +282,8 @@
         margin-bottom: 1rem;
       "
     >
-      <div class="table-responsive" style="margin-top: 1rem">
-        <table class="table products">
+      <div class="table-responsive" style="margin-top: 1rem; border-radius: 1rem;">
+        <table class="table products"  style="border: 3px  #6C757D">
           <thead>
             <tr>
               <th scope="col">Product Name</th>
@@ -374,9 +344,6 @@ export default {
         product_name: "",
         product_info: "",
         price: "",
-        category_id: "",
-        brand_id: "",
-        size_id: "",
         image_url: "",
       }
     };
@@ -397,9 +364,13 @@ export default {
     //  HeaderComp
   },
   methods: {
-    // addProduct() {
-    //     this.$store.dispatch('addProduct', this.payload)
-    // },
+    addProduct() {
+      this.$store.dispatch('addProductmain', this.prodpayload)
+      console.log(this.prodpayload);
+      },
+      reloading() {
+      location.reload()
+    },
     deleteProduct(product_id) {
       this.$store.dispatch("deleteProduct", product_id);
     },
