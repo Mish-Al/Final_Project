@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container" style="height: 80vh; margin-top: 1rem;">
     <div class="row">
       <form class="form" @submit.prevent="login">
         <div class="form-control-wrapper">
@@ -13,6 +13,7 @@
             />
           </span>
         </div>
+        <br>
         <div class="form-control-wrapper">
           <span class="inline">
             <input
@@ -23,11 +24,11 @@
               maxlength="12"
               v-model="payload.user_password"
             />
-          </span>[kiz]
+          </span>
         </div>
         <div class="form-control-wrapper">
           <div class="col">
-            <button type="submit" class="btn btn-success">
+            <button type="submit" class="btn">
               Log In
               <span
                 v-show="spinner"
@@ -38,6 +39,7 @@
             </button>
           </div>
         </div>
+        <br>
         <div class="form-control-wrapper">
           <div class="row">
             <div class="col">
@@ -97,4 +99,16 @@ export default {
 </script>
 
 <style scoped>
+.btn{
+  background-color: #212529;
+  border: 2px ridge #495057;
+  color: #E9ECEF;
+  margin: 4px;
+  width: 4rem;
+}
+.btn:hover{
+  background-color: #CED4DA;
+  color: #495057;
+  border: 2px ridge #E9ECEF;
+}
 </style>
